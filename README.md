@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to Groupomania 👋</h1>
 
-<img alt="Logo: groupomania" src="logos/icon-left-font-monochrome-black.png" />
+<img alt="Logo: groupomania" src="logos/icon-left-font-monochrome-black%20slim.png" />
 <p>
   <a href="https://twitter.com/virgilegug" target="_blank">
     <img alt="Twitter: virgilegug" src="https://img.shields.io/twitter/follow/virgilegug.svg?style=social" />
