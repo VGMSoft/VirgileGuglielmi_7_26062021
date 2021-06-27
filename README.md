@@ -9,6 +9,15 @@
 
 > Réseau social d'entreprise
 
+## Compétences évaluées
+* Personnaliser le contenu envoyé à un client web
+* Gérer un stockage de données à l'aide de SQL
+* Implémenter un stockage de données sécurisé en utilisant SQL
+* Authentifier un utilisateur et maintenir sa session
+
+## Spécifications thechniques
+* <a href="./docs/Groupomania_Specs_FR_DWJ_VF.pdf" target="_blank">guidelines.pdf</a>
+
 ### 🏠 [Homepage](https://github.com/VGMSoft/VirgileGuglielmi_7_26062021)
 
 ## Author
