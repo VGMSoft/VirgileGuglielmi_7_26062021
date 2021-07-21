@@ -1,4 +1,4 @@
-//Calling env vars
+//Calling env vars-----------------------------------------------------------------------------------------------------
 import * as dotenv from 'dotenv'
 
 dotenv.config({path: __dirname + '/.env'})
@@ -7,20 +7,19 @@ import express = require('express')
 import {Application} from "express"
 
 const path = require('path')
-const cors = require('cors')
+import cors from 'cors'
 
-
-// App type
+// App type-------------------------------------------------------------------------------------------------------------
 const app: Application = express()
-console.log(String.fromCodePoint(0x1F44B),'Welcome to groupomania backend')
+console.log(String.fromCodePoint(0x1F44B), 'Welcome to groupomania backend')
 
-//Cors
+//Cors------------------------------------------------------------------------------------------------------------------
 let corsOptions: { origin: string } = {
-  origin: "http://localhost:8801"
+  origin: `${process.env.CORS_OPTION}`
 }
 app.use(cors(corsOptions))
-//HEADERS
-//const helmet = require('helmet')
+
+//HEADERS---------------------------------------------------------------------------------------------------------------
 import helmet = require("helmet")
 
 app.use(helmet())
@@ -31,105 +30,28 @@ app.use((req, res, next) => {
   next()
 })
 
-//Parse Request
+//Parse Request---------------------------------------------------------------------------------------------------------
 app.use(express.json()) // Replace body-parser
 
-//DB connect
-import {Sequelize, Model, DataTypes} from 'sequelize'
-
-const sequelize = new Sequelize(`mysql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`)
-//console.log(sequelize)
-
-//TODO: Relocate section -------------------------------------------------- v
-import User from "./models/userModel"
-
-User.init({
-  id: {
-    type: DataTypes.INTEGER.UNSIGNED,
-    autoIncrement: true,
-    primaryKey: true
-  },
-  email: DataTypes.STRING,
-  password: DataTypes.STRING,
-  pseudo: DataTypes.STRING,
-  avatar_url: DataTypes.STRING,
-  signup_date: DataTypes.DATE,
-  pwd_set: DataTypes.DATE,
-}, {sequelize, modelName: 'users'})
-
-import Post from "./models/postModel"
-
-Post.init({
-  id: {
-    type: DataTypes.INTEGER.UNSIGNED,
-    autoIncrement: true,
-    primaryKey: true
-  },
-  user_id: {
-    type: DataTypes.INTEGER.UNSIGNED,
-  },
-  post_content: DataTypes.TEXT,
-  post_date: DataTypes.DATE
-}, {sequelize, modelName: 'posts'})
-
-import Comment from "./models/commentModel"
-
-Comment.init({
-  id: {
-    type: DataTypes.INTEGER.UNSIGNED,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  user_id: {
-    type: DataTypes.INTEGER.UNSIGNED,
-  },
-  post_id: {
-    type: DataTypes.INTEGER.UNSIGNED,
-  },
-  comment_content: DataTypes.TEXT,
-  comment_date: DataTypes.DATE
-}, {sequelize, modelName: 'comments'})
-
-
-import Likes from "./models/likeModel"
-
-Likes.init({
-  user_id: {
-    type: DataTypes.INTEGER.UNSIGNED,
-  },
-  post_id: {
-    type: DataTypes.INTEGER.UNSIGNED,
-  },
-  like_state: DataTypes.BOOLEAN
-}, {sequelize, modelName: 'likes'})
-
-//TODO: Relocate section -------------------------------------------------- ^
-
-const testDbConnect = async () => {
-  try {
-    await sequelize.authenticate()
+//DB connect------------------------------------------------------------------------------------------------------------
+import sequelize from "./models/index"
+sequelize.authenticate()
+  .then(() => {
     console.log(String.fromCodePoint(0x1F4BF), `️Connection to ${process.env.DB_NAME} DB has been established successfully.`)
-    await sequelize.sync()
-//TODO: Relocate section -------------------------------------------------- v
-    await User.create({
-      email: "bla",
-      password: "bla",
-      pseudo: "bla",
-      avatar_url: "bla",
-      signup_date: new Date(),
-      pwd_set: new Date()
-    })
-//TODO: Relocate section -------------------------------------------------- ^
-  } catch (error) {
-    console.error(String.fromCodePoint(0x26D4), 'Unable to connect to the database:', error)
-  }
-}
-testDbConnect()
+    //-> Prod
+    //sequelize.sync
+    //-> Dev
+    sequelize.sync({force: true})
+      .then(() => {
+        console.log("Drop and re-sync db.")
+      })
+  })
+  .catch((error) => console.error(String.fromCodePoint(0x26D4), 'Unable to connect to the database:', error))
+console.log(String.fromCodePoint(0x1F4BF), `️Connection to ${process.env.DB_NAME} DB has been established successfully.`)
 
-
-/*//Import Routes
-const userRoutes = require('./routes/userRoute')
-const postRoutes = require('./routes/postRoute')
+//Import Routes
+//const userRoutes = require('./routes/authRoute')
+/*const postRoutes = require('./routes/postRoute')
 const commentsRoutes = require('./routes/commentRoute')
 const profileRoute = require("./routes/profileRoute")
 

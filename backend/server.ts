@@ -2,7 +2,8 @@ import {Application} from "express"
 
 console.log()
 
-const http = require('http')
+
+import http = require('http')
 import {Server} from "http"
 import {AddressInfo} from "net"
 
