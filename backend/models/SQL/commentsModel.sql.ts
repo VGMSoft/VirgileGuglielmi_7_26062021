@@ -1,6 +1,6 @@
-import Comment from "../TS/commentModel";
-import {DataTypes} from "sequelize";
-import Likes from "../TS/likeModel";
+import sequelize from "../db.connect"
+import {DataTypes} from "sequelize"
+import Comment from "./../TS/commentModel"
 
 Comment.init({
   id: {

@@ -1,6 +1,6 @@
 import sequelize from "../db.connect"
-import Post from "../TS/postModel"
 import {DataTypes} from "sequelize"
+import Post from "./../TS/postModel"
 
 Post.init({
   id: {

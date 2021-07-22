@@ -1,7 +1,8 @@
-import Likes from "../TS/likeModel";
-import {DataTypes} from "sequelize";
+import sequelize from "../db.connect"
+import {DataTypes} from "sequelize"
+import Like from "./../TS/likeModel"
 
-Likes.init({
+Like.init({
   user_id: {
     type: DataTypes.INTEGER.UNSIGNED,
   },
@@ -11,4 +12,4 @@ Likes.init({
   like_state: DataTypes.BOOLEAN
 }, {sequelize, modelName: 'likes'})
 
-export default Likes
+export default Like
