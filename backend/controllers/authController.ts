@@ -6,7 +6,7 @@ import * as jwt from 'jsonwebtoken'
 
 import {encrypt, decrypt} from '../middleware/crypto'
 
-exports.signup = (req: Request, res: Response, next) => {
+export const signup = (req: Request, res: Response, next) => {
   User.findOne({where: {email: req.body.email}})
     .then(email => {
       if (email) {
@@ -35,7 +35,7 @@ exports.signup = (req: Request, res: Response, next) => {
     .catch(error => res.status(500).json({error}))
 }
 
-exports.login = (req, res, next) => {
+export const login = (req, res, next) => {
   User.findOne({where:{email: encrypt(req.body.email).content}})
     .then(user => {
       if (!user) {
@@ -61,7 +61,7 @@ exports.login = (req, res, next) => {
 }
 
 //TODO v
-exports.logout = (req, res, next) => {
+export const logout = (req, res, next) => {
   User.findOne()
     .then(() => {
     })
