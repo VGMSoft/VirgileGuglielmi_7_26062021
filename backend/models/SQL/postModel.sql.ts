@@ -1,6 +1,6 @@
-import Post from "../TS/postModel";
-import {DataTypes} from "sequelize";
-import Likes from "../TS/likeModel";
+import sequelize from "../db.connect"
+import Post from "../TS/postModel"
+import {DataTypes} from "sequelize"
 
 Post.init({
   id: {

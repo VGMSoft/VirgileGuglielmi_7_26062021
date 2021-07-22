@@ -1,6 +1,6 @@
-import User from "../TS/userModel"
+import sequelize from "../db.connect"
 import {DataTypes} from "sequelize"
-import sequelize from "../index"
+import User from "./../TS/userModel"
 
 User.init({
   id: {

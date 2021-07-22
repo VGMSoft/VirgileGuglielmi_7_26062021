@@ -1,7 +1,19 @@
-import {Sequelize} from 'sequelize'
+import sequelize from "./db.connect"
 
-const sequelize: Sequelize = new Sequelize(`mysql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`)
+export const initDB = () => {
+  sequelize.authenticate()
+    .then(() => {
+      console.log(String.fromCodePoint(0x1F4BF), `️Connection to ${process.env.DB_NAME} DB has been established successfully.`)
+      //-> Prod
+      //sequelize.sync
+      //-> Dev
+      sequelize.sync({force: true})
+        .then(() => {
+          console.log("Drop and re-sync db.")
+        })
+    })
+    .catch((error) => console.error(String.fromCodePoint(0x26D4), 'Unable to connect to the database:', error))
 
-export default sequelize
+}
 
 
