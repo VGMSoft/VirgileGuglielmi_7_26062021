@@ -1,11 +1,12 @@
 import * as express from 'express'
-const router = express.Router()
+import {Router} from "express"
+const authRoute:Router = express.Router()
 import * as authCtrl from '../controllers/authController'
 
-router.post('/signup', authCtrl.signup)
-router.post('/login', authCtrl.login)
-router.post('/logout', authCtrl.logout)
+authRoute.post('/signup', authCtrl.signup)
+authRoute.post('/login', authCtrl.login)
+authRoute.post('/logout', authCtrl.logout)
 
-export default router
+export default authRoute
 
 

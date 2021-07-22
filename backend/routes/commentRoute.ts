@@ -1,15 +1,15 @@
 import * as express from 'express'
-
-const router = express.Router()
+import {Router} from "express"
+const commentRoute:Router = express.Router()
 import * as commentCtrl from '../controllers/commentController'
 
 import {auth} from '../middleware/auth'
 
 
-router.get('/',  commentCtrl.getAllComments)
-router.get('/:id',  commentCtrl.getOneComment)
-router.post('/',  commentCtrl.createComment)
-router.put('/:id',  commentCtrl.editComment)
-router.delete('/:id',  commentCtrl.deleteComment)
+commentRoute.get('/',  commentCtrl.getAllComments)
+commentRoute.get('/:id',  commentCtrl.getOneComment)
+commentRoute.post('/',  commentCtrl.createComment)
+commentRoute.put('/:id',  commentCtrl.editComment)
+commentRoute.delete('/:id',  commentCtrl.deleteComment)
 
-module.exports = router
+export default commentRoute

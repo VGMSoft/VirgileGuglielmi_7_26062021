@@ -1,10 +1,10 @@
 import * as express from 'express'
-const router = express.Router()
+const likeRoute = express.Router()
 import * as likeCtrl from '../controllers/likeController'
 
 
-router.get('/:id',  likeCtrl.getLike)
-router.post('/',  likeCtrl.likePost)
-router.put('/:id',  likeCtrl.updateLike)
+likeRoute.get('/:id',  likeCtrl.getLike)
+likeRoute.post('/',  likeCtrl.likePost)
+likeRoute.put('/:id',  likeCtrl.updateLike)
 
-module.exports = router
+export default likeRoute
