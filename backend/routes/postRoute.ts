@@ -9,8 +9,8 @@ import * as postCtrl from '../controllers/postController'
 //Post
 postRoute.get('/', postCtrl.getAllPosts)
 postRoute.get('/:id', postCtrl.getOnePost)
-postRoute.post('/', multerConfig, postCtrl.createPost)
-postRoute.put('/:id', multerConfig, postCtrl.editPost)
+postRoute.post('/',  postCtrl.createPost)
+postRoute.put('/:id',  postCtrl.editPost)
 postRoute.delete('/:id', postCtrl.deletePost)
 
 export default postRoute

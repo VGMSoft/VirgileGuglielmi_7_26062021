@@ -33,14 +33,13 @@ app.use((req, res, next) => {
 //Parse Request---------------------------------------------------------------------------------------------------------
 app.use(express.json()) // Replace body-parser
 
-//DB connect------------------------------------------------------------------------------------------------------------
-import {initDB} from "./models/index"
-
+//DB connect 1 init ----------------------------------------------------------------------------------------------------
+import {connectDB, initDB} from "./models/index"
+connectDB()
 initDB()
 
-
 //Import Routes
-import authRoute from './routes/authRoute'
+//import authRoute from './routes/authRoute'
 import userRoute from './routes/userRoute'
 import postRoute from './routes/postRoute'
 import commentRoute from './routes/commentRoute'
@@ -50,8 +49,8 @@ import likeRoute from './routes/likeRoute'
 app.use('/images/posts', express.static(path.join(__dirname, 'images/posts')))
 app.use("/images/avatars", express.static(path.join(__dirname, "images/avatars")))
 //Defining Routes
-app.use('/api/auth', authRoute)
-app.use('/api/auth', userRoute)
+//app.use('/api/auth', authRoute)
+app.use('/api/profile', userRoute)
 app.use('/api/posts', postRoute)
 app.use('/api/posts/:id/comments', commentRoute)
 app.use("/api/posts/id/like", likeRoute)

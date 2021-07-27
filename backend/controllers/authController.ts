@@ -19,7 +19,7 @@ export const signup = (req: Request, res: Response, next) => {
           bcrypt.hash(pass, 10)
             .then(hash => {
               const user = new User({
-                email: encrypt(req.body.email).content,
+                email: encrypt(req.body.email),
                 password: hash
               })
               user.save()
@@ -36,7 +36,7 @@ export const signup = (req: Request, res: Response, next) => {
 }
 
 export const login = (req, res, next) => {
-  User.findOne({where:{email: encrypt(req.body.email).content}})
+  User.findOne({where:{email: encrypt(req.body.email)}})
     .then(user => {
       if (!user) {
         return res.status(401).json({error: 'Utilisateur non trouvé !'})

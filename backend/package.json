@@ -5,8 +5,7 @@
   "main": "server.ts",
   "scripts": {
     "dev": "nodemon ./server.ts",
-    "compilTs": "tsc",
-    "buildDb": "ts-node ./models/*.ts"
+    "dbinit": "node ./models/index.ts"
   },
   "keywords": [],
   "author": "",
