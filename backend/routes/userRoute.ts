@@ -2,7 +2,7 @@ import * as express from 'express'
 import {Router} from "express"
 const userRoute:Router = express.Router()
 import {auth} from '../middleware/auth'
-import * as userCtrl from '../controllers/userController'
+import * as userCtrl from '../controllers/profileController'
 
 userRoute.post('/', userCtrl.createProfile)
 userRoute.get('/', userCtrl.getProfile)
