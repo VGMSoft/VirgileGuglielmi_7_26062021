@@ -1,9 +1,9 @@
 import {Model} from 'sequelize'
 
-class Likes extends Model {
-  user_id: string | undefined
-  post_id: string | undefined
+class Like extends Model {
+  userId: string | undefined
+  postId: string | undefined
   like_state: string | undefined
 }
 
-export default Likes
+export default Like
