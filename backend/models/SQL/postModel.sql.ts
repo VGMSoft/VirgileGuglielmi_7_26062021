@@ -1,7 +1,8 @@
 import sequelize from "../db.connect"
 import {DataTypes} from "sequelize"
 import Post from "./../TS/postModel"
-
+import User from "../TS/userModel"
+import Comment from "../TS/commentModel"
 
 export const initPost = () => {
   Post.init({
@@ -10,11 +11,10 @@ export const initPost = () => {
       autoIncrement: true,
       primaryKey: true
     },
-    user_id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-    },
     post_content: DataTypes.TEXT,
     post_date: DataTypes.DATE
   }, {sequelize, modelName: 'posts'})
-  console.log("Table post initialisée")
+
+  Post.belongsTo(User)
+  User.hasMany(Post)
 }

@@ -1,6 +1,8 @@
 import sequelize from "../db.connect"
 import {DataTypes} from "sequelize"
 import Comment from "./../TS/commentModel"
+import User from "../TS/userModel"
+import Post from "../TS/postModel";
 
 
 export const initComment = () => {
@@ -10,14 +12,16 @@ export const initComment = () => {
       autoIncrement: true,
       primaryKey: true,
     },
-    user_id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-    },
-    post_id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-    },
     comment_content: DataTypes.TEXT,
     comment_date: DataTypes.DATE
   }, {sequelize, modelName: 'comments'})
-  console.log("Table comment initialisée")
+
+  Comment.belongsTo(Post)
+  Post.hasMany(Comment)
+
+  Comment.belongsTo(User)
+  User.hasMany(Comment)
 }
+
+// Comment.belongsTo(User)
+// User.hasMany(Comment)
