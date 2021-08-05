@@ -1,0 +1,18 @@
+$primary: #091E43;
+$danger: #D15059;
+$disabled: #AEAEB0;
+
+.container {
+  height: 100rem;
+  background-image: url("./../src/assets/logos/icon.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.navbar {
+  background-color: $primary;
+  &-brand img{
+    width: 10rem;
+  }
+}

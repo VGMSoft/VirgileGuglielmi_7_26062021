@@ -1,0 +1,51 @@
+{
+  "name": "groupomania",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "styles": "npm run sass && npm run prefix"
+  },
+  "dependencies": {
+    "bootstrap": "5.0.1",
+    "core-js": "^3.8.3",
+    "font-awesome": "4.7.0",
+    "vue": "^3.0.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@types/bootstrap": "^5.0.17",
+    "@vue/cli-plugin-babel": "~5.0.0-beta.2",
+    "@vue/cli-plugin-eslint": "~5.0.0-beta.2",
+    "@vue/cli-service": "~5.0.0-beta.2",
+    "@vue/compiler-sfc": "^3.0.4",
+    "eslint": "^7.20.0",
+    "eslint-plugin-vue": "^7.2.0",
+    "node": "^16.6.1",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^12.1.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 4 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}
