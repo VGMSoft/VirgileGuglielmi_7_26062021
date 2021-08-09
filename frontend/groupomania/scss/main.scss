@@ -1,6 +1,13 @@
-$primary: #091E43;
-$danger: #D15059;
-$disabled: #AEAEB0;
+@import "~bootstrap/scss/bootstrap";
+$custom-colors: (
+        "primary": #D15059,
+        "secondary": #091E43,
+        "muted": #AEAEB0
+);
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
 
 .container {
   height: 100rem;
