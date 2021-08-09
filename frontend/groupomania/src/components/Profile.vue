@@ -29,7 +29,7 @@ export default defineComponent({
       pseudo: "VGMSoft",
       email: "virgile.gug@gmail.com",
       signupDate: "30/05/2018",
-      avatarUrl: "./../../src/assets/profile/VGM.png"
+      avatarUrl: "https://i.pravatar.cc/400"
     });
     return {user}
   }

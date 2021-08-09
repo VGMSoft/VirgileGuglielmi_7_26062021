@@ -11,22 +11,22 @@
       </ul>
     </div>
     <div class="card-body">
-      <!--<SignIn/>-->
-      <SignUp/>
+      <SignIn></SignIn>
+      <!--<SignUp></SignUp>-->
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent, ref} from 'vue'
-import SignUp from "./../components/SignUp"
-//import SignIn from "./../components/SignIn"
+//import SignUp from "./../components/SignUp"
+import SignIn from "./../components/SignIn"
 
 export default defineComponent({
   name: "LogBox",
   components: {
-    //SignIn,
-    SignUp
+    SignIn,
+    //SignUp
   },
   setup() {
     return {
