@@ -1,4 +1,5 @@
-<h1 align="center">Welcome to Groupomania 👋</h1>
+<h1 style="text-align: center;"
+ >Welcome to Groupomania 👋</h1>
 
 <img alt="Logo: groupomania" src="frontend/groupomania/src/assets/logos/icon-left-font-monochrome-black-slim.png" />
 
