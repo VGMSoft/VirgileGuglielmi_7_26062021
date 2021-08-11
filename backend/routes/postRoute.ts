@@ -2,7 +2,7 @@ import * as express from 'express'
 import {Router} from "express"
 
 const postRoute: Router = express.Router()
-import {auth} from '../middleware/auth'
+import {auth} from '../middleware/passport.config'
 import multerConfig from "../middleware/multer.config"
 import * as postCtrl from '../controllers/postController'
 

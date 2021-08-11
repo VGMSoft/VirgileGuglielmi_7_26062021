@@ -4,3 +4,5 @@ node_modules
 package-lock.json
 dist/
 .env
+middleware/keyGen/id_rsa_priv.pem
+middleware/keyGen/id_rsa_pub.pem

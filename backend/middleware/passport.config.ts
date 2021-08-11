@@ -40,5 +40,4 @@ export const initPassport = (passport) => {
   }))
 }
 
-export let auth: Promise<void>
-auth = passport.authenticate('jwt', {session: false})
+export let auth = passport.authenticate('jwt', {session: false})
