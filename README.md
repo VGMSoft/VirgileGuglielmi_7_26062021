@@ -17,7 +17,7 @@
     <img alt="Typescript" src="./docs/logos/typescript.png" />
     <img alt="Sequelize" src="./docs/logos/sequelize.png" />
     <img alt="mySQL" src="./docs/logos/mySQL.png" />
-    
+    <img alt="passport" src="./docs/logos/passport.png" />
 </div>  
 
 ## Compétences évaluées
