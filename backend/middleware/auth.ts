@@ -1,6 +1,6 @@
+/*
 import * as jwt from'jsonwebtoken'
-
-export const auth = (req, res, next) => {
+ const auth = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1]
     const decodedToken = jwt.verify(token, `${process.env.TOKEN_KEY}`)
@@ -15,4 +15,4 @@ export const auth = (req, res, next) => {
     //invalid or expired token
     res.status(498).json({error: new Error('Invalid request!')})
   }
-}
+}*/

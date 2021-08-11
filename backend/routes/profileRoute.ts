@@ -5,7 +5,7 @@ const profileRoute: Router = express.Router()
 import {auth} from '../middleware/passport.config'
 import * as userCtrl from '../controllers/profileController'
 
-profileRoute.post('/', auth, userCtrl.createProfile)
+profileRoute.post('/', userCtrl.createProfile)
 profileRoute.get('/', auth, userCtrl.getProfile)
 profileRoute.put('/', auth, userCtrl.editProfile)
 profileRoute.delete('', auth, userCtrl.deleteProfile)

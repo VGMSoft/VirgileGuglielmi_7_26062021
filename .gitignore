@@ -1,8 +1,11 @@
+#Apple Desktop Services Store
 .DS_Store
+#JetBrains WebStorm specific project settings
 .idea/
 node_modules
 package-lock.json
-backend/dist/
-RouteDoc.numbers
-WIP.txt
-./backend/.env
+#distribution folder(.js)
+backend/dist/*
+#hide dotenv vars
+*.env
+!.env.template

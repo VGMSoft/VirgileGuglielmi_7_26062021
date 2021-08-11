@@ -3,7 +3,7 @@ import {Router} from "express"
 const commentRoute:Router = express.Router()
 import * as commentCtrl from '../controllers/commentController'
 
-import {auth} from '../middleware/auth'
+import {auth} from '../middleware/passport.config'
 
 
 commentRoute.get('/',  commentCtrl.getAllComments)
