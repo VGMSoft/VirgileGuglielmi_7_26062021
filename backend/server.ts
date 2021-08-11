@@ -1,9 +1,6 @@
+
+import http from 'http'
 import {Application} from "express"
-
-console.log()
-
-
-import http = require('http')
 import {Server} from "http"
 import {AddressInfo} from "net"
 
