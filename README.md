@@ -12,14 +12,16 @@
 <div style="display: flex;flex-direction: row;">
   <img alt="Vue3" src="./docs/logos/vue3.png" />
   <img alt="Bootstrap" src="./docs/logos/bootstrap.png" />
-</div> 
+</div>
+
 * **Backend** : NodeJS, Application Express & Typescript.
 <div style="display: flex;flex-direction: row;">
     <img alt="node" src="./docs/logos/node.png" />
     <img alt="Express" src="./docs/logos/express.png" />
     <img alt="Typescript" src="./docs/logos/typescript.png" />
     <img alt="passport" src="./docs/logos/passport.png" />
-</div>  
+</div>
+
 * **Database** : mySQL générée par Sequelize ORM au niveau du backend.
 <div style="display: flex;flex-direction: row;">
     <img alt="Sequelize" src="./docs/logos/sequelize.png" />
