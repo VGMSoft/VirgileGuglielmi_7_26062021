@@ -4,10 +4,10 @@ import User from '../models/TS/userModel'
 import bcrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
 
-import {encrypt, decrypt} from '../middleware/crypto'
+import {encrypt, decrypt, key, iv} from '../middleware/cryptoJS'
 
-export const signup = (req: Request, res: Response, next) => {
-  User.findOne({where: {email: req.body.email}})
+/*export const signup = (req: Request, res: Response, next) => {
+  User.findOne({where: {email: encrypt(req.body.email, `${process.env.CRYPTO_KEY}`)}})
     .then(email => {
       if (email) {
         res.status(405).json({message: 'Account already exists !'})
@@ -19,8 +19,8 @@ export const signup = (req: Request, res: Response, next) => {
           bcrypt.hash(pass, 10)
             .then(hash => {
               const user = new User({
-                email: encrypt(req.body.email),
-                password: hash
+                email: encrypt(req.body.email, `${process.env.CRYPTO_KEY}`),
+                password: hash,
               })
               user.save()
                 .then(() => res.status(201).json({message: 'Utilisateur créé !'}))
@@ -33,10 +33,10 @@ export const signup = (req: Request, res: Response, next) => {
       }
     })
     .catch(error => res.status(500).json({error}))
-}
+}*/
 
 export const login = (req, res, next) => {
-  User.findOne({where:{email: encrypt(req.body.email)}})
+  User.findOne({where: {email: encrypt(req.body.email, key, iv)}})
     .then(user => {
       if (!user) {
         return res.status(401).json({error: 'Utilisateur non trouvé !'})

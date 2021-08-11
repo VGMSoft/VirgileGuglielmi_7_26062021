@@ -2,6 +2,7 @@ import {Request, Response} from 'express'
 import User from './../models/TS/userModel'
 import {encrypt, key, iv} from "../middleware/cryptoJS"
 import bcrypt from 'bcrypt'
+import {checkpass} from "../middleware/password"
 
 
 export const createProfile = (req: Request, res: Response, next) => {
@@ -12,7 +13,7 @@ export const createProfile = (req: Request, res: Response, next) => {
       } else {
         //Password is minimum 8 chars, 1 uppercase, 1 letter, 1 number, 1 special char
         const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-        const pass = req.body.password
+        const pass = checkpass(req.body.password)
         if (pass.match(passRegex)) {
           bcrypt.hash(pass, 10)
             .then(hash => {
