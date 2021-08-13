@@ -1,6 +1,7 @@
 //Vue
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router.ts'
 
 //Fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -26,5 +27,5 @@ createApp(App)
   .component('Profile',Profile)
   .component('Post',Post)
   .component('Comment',Comment)
-
+  .use(router)
   .mount('#app')
