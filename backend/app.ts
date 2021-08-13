@@ -40,7 +40,6 @@ import {connectDB, initDB} from "./models/index"
 connectDB()
 initDB()
 
-
 //JWT Auth-------------------------------------------------------------------------------------------------------------
 import passport from 'passport'
 import {initPassport} from "./middleware/passport.config";
