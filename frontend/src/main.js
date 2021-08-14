@@ -1,14 +1,12 @@
 //Vue
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
 import router from './router.ts'
 
 //Fontawesome
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faThumbsUp, faComment, faShare } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faThumbsUp, faComment, faShare)
-
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {faComment, faShare, faThumbsUp} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 //Components
 import SignUp from "@/components/SignUp"
 import SignIn from "@/components/SignIn"
@@ -18,7 +16,11 @@ import Profile from "@/components/Profile"
 import Post from "@/components/Post"
 import Comment from "@/components/Comment"
 
+library.add(faThumbsUp, faComment, faShare)
+
+
 createApp(App)
+  .use(router)
   .component('font-awesome-icon', FontAwesomeIcon)
   .component('Navbar',Navbar)
   .component('LogBox',LogBox)
@@ -27,5 +29,5 @@ createApp(App)
   .component('Profile',Profile)
   .component('Post',Post)
   .component('Comment',Comment)
-  .use(router)
+
   .mount('#app')
