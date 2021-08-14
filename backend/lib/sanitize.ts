@@ -5,7 +5,7 @@ data given by the user  */
 
 const regex = /[@#$%&\/?!|*+)(}{=:.>_<"^\[\]]|SELECT|INSERT|ALTER|DELETE|FROM|script/g
 
-const sanitize = (obj) => {
+export const sanitize = (obj) => {
   Object.keys(obj).forEach(key => {
     if (typeof obj[key] === "string" && key !== "imageUrl") {
       obj[key] = obj[key].replace(regex, '')
@@ -14,4 +14,3 @@ const sanitize = (obj) => {
   return obj
 }
 
-export default sanitize

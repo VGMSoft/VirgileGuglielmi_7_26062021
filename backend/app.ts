@@ -52,7 +52,7 @@ import likeRoute from "./routes/likeRoute"
 app.use('/auth', authRoute)
 app.use('/api/profile', profileRoute)
 app.use('/api/posts', postRoute)
-app.use('/api/posts/:id/comments', commentRoute)
+app.use('/api/posts/id/comments', commentRoute)
 app.use("/api/posts/id/like", likeRoute)
 
 //Serving images--------------------------------------------------------------------------------------------------------
