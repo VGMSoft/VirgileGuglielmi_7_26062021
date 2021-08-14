@@ -1,39 +1,42 @@
 import {Request, Response} from 'express'
 import User from '../models/TS/userModel'
-
-import bcrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
+import {checkpass} from "../lib/checkpass"
+import {encrypt, iv, key} from "../middleware/cryptoJS"
+import * as path from "path"
+import * as fs from "fs"
 
-import {encrypt, decrypt, key, iv} from '../middleware/cryptoJS'
-
-/*export const signup = (req: Request, res: Response, next) => {
-  User.findOne({where: {email: encrypt(req.body.email, `${process.env.CRYPTO_KEY}`)}})
+export const signup = (req: Request, res: Response, next) => {
+  User.findOne({where: {email: encrypt(req.body.email, key, iv)}})
     .then(email => {
       if (email) {
         res.status(405).json({message: 'Account already exists !'})
       } else {
         //Password is minimum 8 chars, 1 uppercase, 1 letter, 1 number, 1 special char
         const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-        const pass = req.body.password
+        const pass = checkpass(req.body.password)
         if (pass.match(passRegex)) {
           bcrypt.hash(pass, 10)
             .then(hash => {
-              const user = new User({
-                email: encrypt(req.body.email, `${process.env.CRYPTO_KEY}`),
-                password: hash,
+              User.create({
+                ... req.body,
+                email: encrypt(req.body.email, key, iv),
+                password: hash
               })
-              user.save()
-                .then(() => res.status(201).json({message: 'Utilisateur créé !'}))
-                .catch(error => res.status(400).json({error}))
+                .then(() => res.status(201).json({message: 'User saved successfully!'}))
+                .catch(error => res.status(401).json({error}))
             })
-            .catch(error => res.status(500).json({error}))
         } else {
-          res.status(400).json({message: 'Mot de passe non conforme !'})
+          res.status(404).json({message: 'Le mot de passe fourni ne correspond pas au format demandé !'})
         }
       }
     })
     .catch(error => res.status(500).json({error}))
-}*/
+}
+
+const pathToKey = path.join(__dirname, './../lib/keyGen', 'id_rsa_priv.pem');
+const PRIV_KEY = fs.readFileSync(pathToKey, 'utf8');
 
 export const login = (req, res, next) => {
   User.findOne({where: {email: encrypt(req.body.email, key, iv)}})
@@ -50,20 +53,12 @@ export const login = (req, res, next) => {
             userId: user.id,
             token: jwt.sign(
               {userId: user.id},
-              `${process.env.TOKEN_KEY}`,
-              {expiresIn: '24h'}
+              `${PRIV_KEY}`,
+              {expiresIn: '24h', algorithm: 'RS256'}
             )
           })
         })
         .catch(error => res.status(500).json({error}))
     })
     .catch(error => res.status(500).json({error}))
-}
-
-//TODO v
-export const logout = (req, res, next) => {
-  User.findOne()
-    .then(() => {
-    })
-    .catch(error => res.status().json({error}))
 }

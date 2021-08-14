@@ -16,7 +16,6 @@ export const initUser = () => {
     signup_date: DataTypes.DATE,
     pwd_set: DataTypes.DATE,
   }, {sequelize, modelName: 'users'})
-  console.log("Table user initialisée")
 }
 
 

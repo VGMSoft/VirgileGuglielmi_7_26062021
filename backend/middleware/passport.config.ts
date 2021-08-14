@@ -1,14 +1,12 @@
 //TODO https://www.youtube.com/watch?v=SBvmnHTQIPY
 //TODO https://www.youtube.com/watch?v=-RCnNyD0L-s
 //TODO https://www.youtube.com/watch?v=Ne0tLHm1juE&t=1200s
-
 import * as path from 'path'
 import * as fs from 'fs'
-import passport from 'passport'
-import {Strategy, ExtractJwt} from 'passport-jwt'
+import {ExtractJwt, Strategy as JwtStrategy} from 'passport-jwt'
 import User from '././../models/TS/userModel'
 
-const pathToKey = path.join(__dirname, './keyGen', 'id_rsa_pub.pem');
+const pathToKey = path.join(__dirname, './../lib/keyGen', 'id_rsa_pub.pem');
 const PUB_KEY = fs.readFileSync(pathToKey, 'utf8');
 
 const options = {
@@ -18,9 +16,8 @@ const options = {
 }
 
 export const initPassport = (passport) => {
-  passport.use(new Strategy(options, function (jwt_payload, done) {
-    console.log(jwt_payload)
-    User.findOne({where: {user: jwt_payload.sub}})
+  passport.use(new JwtStrategy(options, function (jwt_payload, done) {
+    User.findOne({where: {id: jwt_payload.userId}})
       .then(
         (user) => {
           if (user) {
@@ -35,5 +32,3 @@ export const initPassport = (passport) => {
       })
   }))
 }
-
-export let auth = passport.authenticate('jwt', {session: false})
