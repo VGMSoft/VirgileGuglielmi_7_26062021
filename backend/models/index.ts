@@ -5,15 +5,15 @@ export const connectDB = () => {
     .then(() => {
       console.log(String.fromCodePoint(0x1F4BF), `️Connection to ${process.env.DB_NAME} DB has been established successfully.`)
       //-> Prod
-      // sequelize.sync()
-      //   .then(() => {
-      //     console.log(String.fromCodePoint(0x26A0),"PROD MODE")
-      //   })
-      //-> Dev
-      sequelize.sync({force: true})
+      sequelize.sync()
         .then(() => {
-          console.log(String.fromCodePoint(0x26A0),"DEV MODE : Drop and re-sync db.")
+          console.log(String.fromCodePoint(0x26A0),"<PROD MODE>")
         })
+      //-> Dev
+      // sequelize.sync({force: true})
+      //   .then(() => {
+      //     console.log(String.fromCodePoint(0x26A0),"<DEV MODE> : Drop and re-sync db.")
+      //   })
     })
     .catch((error) => console.error(String.fromCodePoint(0x26D4), 'Unable to connect to the database:', error))
 
