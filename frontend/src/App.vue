@@ -1,11 +1,7 @@
 <template>
-<Navbar></Navbar>
+<Navbar/>
+  <RouterView />
 
-  <div class="container d-flex justify-content-center pt-5">
-     <LogBox></LogBox>
-       <!--  <Profile></Profile>
-    <Post></Post>-->
-  </div>
 </template>
 
 <script lang="ts">
