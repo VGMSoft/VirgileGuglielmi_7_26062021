@@ -1,16 +1,17 @@
 import * as express from 'express'
-import {Router} from "express"
+import {Router} from 'express'
+import * as postCtrl from '../controllers/postController'
+const passport = require('passport')
+
+
 
 const postRoute: Router = express.Router()
-import {auth} from '../middleware/passport.config'
-import multerConfig from "../middleware/multer.config"
-import * as postCtrl from '../controllers/postController'
 
 //Post
-postRoute.get('/', postCtrl.getAllPosts)
-postRoute.get('/:id', postCtrl.getOnePost)
-postRoute.post('/',  postCtrl.createPost)
-postRoute.put('/:id',  postCtrl.editPost)
-postRoute.delete('/:id', postCtrl.deletePost)
+postRoute.get('/', passport.authenticate('jwt', {session: false}), postCtrl.getAllPosts)
+postRoute.get('/:id', passport.authenticate('jwt', {session: false}), postCtrl.getOnePost)
+postRoute.post('/', passport.authenticate('jwt', {session: false}), postCtrl.createPost)
+postRoute.put('/:id', passport.authenticate('jwt', {session: false}), postCtrl.editPost)
+postRoute.delete('/:id', passport.authenticate('jwt', {session: false}), postCtrl.deletePost)
 
 export default postRoute

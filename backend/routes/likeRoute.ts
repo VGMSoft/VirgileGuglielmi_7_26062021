@@ -1,6 +1,7 @@
 import * as express from 'express'
-const likeRoute = express.Router()
 import * as likeCtrl from '../controllers/likeController'
+const passport = require('passport')
+const likeRoute = express.Router()
 
 
 likeRoute.get('/:id',  likeCtrl.getAllLikes)

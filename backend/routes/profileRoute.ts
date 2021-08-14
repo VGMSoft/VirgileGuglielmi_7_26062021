@@ -1,16 +1,16 @@
 import * as express from 'express'
-import {Router} from "express"
+import {Router} from 'express'
+import * as userCtrl from '../controllers/profileController'
+const passport = require('passport')
+
 
 const profileRoute: Router = express.Router()
-import {auth} from '../middleware/passport.config'
-import * as userCtrl from '../controllers/profileController'
 
-profileRoute.post('/', userCtrl.createProfile)
-profileRoute.get('/', auth, userCtrl.getProfile)
-profileRoute.put('/', auth, userCtrl.editProfile)
-profileRoute.delete('', auth, userCtrl.deleteProfile)
-profileRoute.post('/avatar', auth, userCtrl.addAvatar)
-profileRoute.put('/avatar', auth, userCtrl.editAvatar)
+profileRoute.get('/', passport.authenticate('jwt', { session: false }),userCtrl.getProfile)
+profileRoute.put('/', passport.authenticate('jwt', { session: false }),userCtrl.editProfile)
+profileRoute.delete('', passport.authenticate('jwt', { session: false }),userCtrl.deleteProfile)
+profileRoute.post('/avatar', passport.authenticate('jwt', { session: false }),userCtrl.addAvatar)
+profileRoute.put('/avatar', passport.authenticate('jwt', { session: false }),userCtrl.editAvatar)
 
 export default profileRoute
 
