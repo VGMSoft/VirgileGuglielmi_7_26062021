@@ -7,14 +7,14 @@
 
 ## Stack technique
 
-* **Frontend** : Application VueJS.
+* **Frontend** : Application VueJS & Framework Bootstrap.
 
 <div style="display: flex;flex-direction: row;">
   <img alt="Vue3" src="./docs/logos/vue3.png" />
   <img alt="Bootstrap" src="./docs/logos/bootstrap.png" />
 </div>
 
-* **Backend** : NodeJS, Application Express & Typescript.
+* **Backend** : NodeJS, Application Express, Typescript & Passport Auth.
 <div style="display: flex;flex-direction: row;">
     <img alt="node" src="./docs/logos/node.png" />
     <img alt="Express" src="./docs/logos/express.png" />
