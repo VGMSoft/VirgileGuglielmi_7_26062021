@@ -22,7 +22,21 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
+
+import {loggedUser} from "./../config/axios.config"
+import {UserModel} from "./../models/userModel"
+
+const signup = () => {
+  loggedUser.post<Array<UserModel>>('/auth/signup')
+    .then((response) => {
+
+      return response.data
+    })
+    .catch((err) => {
+    })
+}
+
 export default {
   name: "SignUp"
 }
