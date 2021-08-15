@@ -1,13 +1,17 @@
-export const createCookie = (name, value, days) => {
-  if (days) {
-    const date = new Date()
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000))
-    let expires = `; expires= ${date.toGMTString()}`
-  } else let expires = ""
+//TODO
+export const createCookie = (name: string, value: string, days: number | undefined) => {
+  let expires
+  days !== undefined
+    ? {
+      const date = new Date()
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000))
+      expires = `; expires= ${date.toUTCString()}`
+    }
+    : expires = ""
   document.cookie = name + "=" + value + expires + "; path=/"
 }
 
-export const readCookie = (name) => {
+export const readCookie = (name: string) => {
   const nameEQ = name + "="
   const ca = document.cookie.split(';')
   for (let i = 0; i < ca.length; i++) {
@@ -18,6 +22,6 @@ export const readCookie = (name) => {
   return null;
 }
 
-export const eraseCookie = (name) => {
+export const eraseCookie = (name: string) => {
   createCookie(name, "", -1);
 }
