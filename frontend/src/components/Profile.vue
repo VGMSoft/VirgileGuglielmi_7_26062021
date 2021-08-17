@@ -18,7 +18,56 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue';
+import {defineComponent, ref} from 'vue'
+import {loggedUser} from "../config/axios.config";
+import {PostModel} from "../models/postModel";
+
+//---------------------------------------------------
+const createProfile = () => {
+  loggedUser.post<Array<PostModel>>(`/api/profile`)
+    .then((response) => {
+      return response.data
+    })
+    .catch((err) => {
+    })
+}
+
+const getAllProfiles = () => {
+  loggedUser.get<Array<PostModel>>('/api/profile')
+    .then((response) => {
+      return response.data
+    })
+    .catch((err) => {
+    })
+}
+
+const getOneProfile = (id) => {
+  loggedUser.get<Array<PostModel>>(`/api/profile/${id}`)
+    .then((response) => {
+      return response.data
+    })
+    .catch((err) => {
+    })
+}
+
+const editProfile = (id) => {
+  loggedUser.put<Array<PostModel>>(`/api/profile/${id}`)
+    .then((response) => {
+      return response.data
+    })
+    .catch((err) => {
+    })
+}
+
+const deleteProfile = (id) => {
+  loggedUser.delete<Array<PostModel>>(`/api/profile/${id}`)
+    .then((response) => {
+      return response.data
+    })
+    .catch((err) => {
+    })
+}
+//---------------------------------------------------
 
 export default defineComponent({
   name: "Profile",

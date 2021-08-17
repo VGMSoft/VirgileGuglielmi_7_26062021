@@ -18,7 +18,25 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
+
+import {loggedUser} from "./../config/axios.config"
+import {createCookie} from "../config/cookie.utils";
+import {UserModel} from "./../models/userModel"
+
+const login = () => {
+  loggedUser.post<Array<UserModel>>('/auth/login')
+    .then((response) => {
+      if (response.data.token){
+        createCookie('userToken', `${response.data.token}`,1)
+      }
+      return response.data
+    })
+    .catch((err) => {
+    })
+}
+
+
 export default {
   name: "signIn"
 }
