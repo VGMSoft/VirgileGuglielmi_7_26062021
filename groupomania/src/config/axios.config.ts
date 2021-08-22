@@ -5,11 +5,11 @@ const commonConfig = {
   baseURL: 'http://localhost:3000/',
 }
 
-const loggedUser = axios.create({...commonConfig})
+export const loggedUser = axios.create({...commonConfig})
 
-//
 loggedUser.interceptors.request.use((config: AxiosRequestConfig) => {
-  const token = readCookie(userToken)
+  //TODO
+  const token = readCookie(process.env.userToken)
   if (token) {
     config.headers = {Authorization: `Bearer ${token}`}
   }
@@ -18,7 +18,8 @@ loggedUser.interceptors.request.use((config: AxiosRequestConfig) => {
 
 loggedUser.interceptors.response.use(
   (response: AxiosResponse) => response,
-  error => {return Promise.reject(error)}
+  error => {
+    return Promise.reject(error)
+  }
 )
 
-export {loggedUser}

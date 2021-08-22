@@ -32,63 +32,74 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue'
-import {loggedUser} from './../config/axios.config'
-import {PostModel} from "../models/postModel"
-
-//---------------------------------------------------
-const createPost = () => {
-  loggedUser.post<Array<PostModel>>(`/api/posts`)
-    .then((response) => {
-      return response.data
-    })
-    .catch((err) => {
-    })
-}
-
-const getAllPosts = () => {
-  loggedUser.get<Array<PostModel>>('/api/posts')
-    .then((response) => {
-      return response.data
-    })
-    .catch((err) => {
-    })
-}
-
-const getOnePost = (id) => {
-  loggedUser.get<Array<PostModel>>(`/api/posts/${id}`)
-    .then((response) => {
-      return response.data
-    })
-    .catch((err) => {
-    })
-}
-
-const editPost = (id) => {
-  loggedUser.put<Array<PostModel>>(`/api/posts/${id}`)
-    .then((response) => {
-      return response.data
-    })
-    .catch((err) => {
-    })
-}
-
-const deletePost = (id) => {
-  loggedUser.delete<Array<PostModel>>(`/api/posts/${id}`)
-    .then((response) => {
-      return response.data
-    })
-    .catch((err) => {
-    })
-}
-//---------------------------------------------------
+import {defineComponent} from 'vue'
+import {loggedUser} from "@/config/axios.config"
+import {PostModel} from "@/models/postModel"
 
 export default defineComponent({
   name: "Post",
-  setup: () => {
 
-    return {
-      posts: ref(
+  props: {
+    avatarUrl: {
+      type: String,
+      required: false
+    },
+    userName: {
+      type: String,
+      required: true
+    },
+    time: {
+      type: Date,
+      required: true
+    },
+    content: {
+      type: String,
+      required: true
+    }
+
+  },
+  setup: () => {
+    const createPost = () => {
+      loggedUser.post<Array<PostModel>>(`/api/posts`)
+        .then((response) => {
+          return response.data
+        })
+        .catch((err) => {
+          return err
+        })
+    }
+
+    const getAllPosts = () => {
+      loggedUser.get<Array<PostModel>>('/api/posts')
+        .then((response) => {
+          return response.data
+        })
+
+    }
+
+    const getOnePost = (id:number) => {
+      loggedUser.get<Array<PostModel>>(`/api/posts/${id}`)
+        .then((response) => {
+          return response.data
+        })
+    }
+
+    const editPost = (id:number) => {
+      loggedUser.put<Array<PostModel>>(`/api/posts/${id}`)
+        .then((response) => {
+          return response.data
+        })
+    }
+
+    const deletePost = (id:number) => {
+      loggedUser.delete<Array<PostModel>>(`/api/posts/${id}`)
+        .then((response) => {
+          return response.data
+        })
+    }
+
+    return {getAllPosts, getOnePost, createPost, editPost, deletePost,
+      // posts: ref(
         // [
         //   {
         //     id: 1,
@@ -122,7 +133,8 @@ export default defineComponent({
         //     time: "15:36:47"
         //   }
         // ]
-      )
+      // )
+
     }
   }
 })

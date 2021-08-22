@@ -2,7 +2,7 @@
   <div class="card mb-3">
     <div class="row g-0">
       <div class="col-md-4">
-        <img src="./../../src/assets/profile/VGM.png" class="img-fluid rounded-start" alt="Profile picture">
+        <img src="@/assets/profile/VGM.png" class="img-fluid rounded-start" alt="Profile picture">
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -29,42 +29,48 @@ const createProfile = () => {
       return response.data
     })
     .catch((err) => {
+      return err
     })
 }
 
+//TODO Not safe
 const getAllProfiles = () => {
   loggedUser.get<Array<PostModel>>('/api/profile')
     .then((response) => {
       return response.data
     })
     .catch((err) => {
+      return err
     })
 }
 
-const getOneProfile = (id) => {
+const getOneProfile = (id:number) => {
   loggedUser.get<Array<PostModel>>(`/api/profile/${id}`)
     .then((response) => {
       return response.data
     })
     .catch((err) => {
+      return err
     })
 }
 
-const editProfile = (id) => {
+const editProfile = (id:number) => {
   loggedUser.put<Array<PostModel>>(`/api/profile/${id}`)
     .then((response) => {
       return response.data
     })
     .catch((err) => {
+      return err
     })
 }
 
-const deleteProfile = (id) => {
+const deleteProfile = (id:number) => {
   loggedUser.delete<Array<PostModel>>(`/api/profile/${id}`)
     .then((response) => {
       return response.data
     })
     .catch((err) => {
+      return err
     })
 }
 //---------------------------------------------------
@@ -80,7 +86,7 @@ export default defineComponent({
       signupDate: "30/05/2018",
       avatarUrl: "https://i.pravatar.cc/400"
     });
-    return {user}
+    return { user, getAllProfiles, getOneProfile, createProfile, editProfile, deleteProfile}
   }
 })
 </script>
