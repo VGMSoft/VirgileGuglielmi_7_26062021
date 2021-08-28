@@ -4,7 +4,6 @@ import Comment from "./../TS/commentModel"
 import User from "../TS/userModel"
 import Post from "../TS/postModel";
 
-
 export const initComment = () => {
   Comment.init({
     id: {
@@ -22,6 +21,3 @@ export const initComment = () => {
   Comment.belongsTo(User)
   User.hasMany(Comment)
 }
-
-// Comment.belongsTo(User)
-// User.hasMany(Comment)
