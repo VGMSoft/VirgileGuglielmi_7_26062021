@@ -2,7 +2,6 @@ import sequelize from "../db.connect"
 import {DataTypes} from "sequelize"
 import Post from "./../TS/postModel"
 import User from "../TS/userModel"
-import Comment from "../TS/commentModel"
 
 export const initPost = () => {
   Post.init({
@@ -15,6 +14,7 @@ export const initPost = () => {
     post_date: DataTypes.DATE
   }, {sequelize, modelName: 'posts'})
 
-  Post.belongsTo(User)
   User.hasMany(Post)
+  Post.belongsTo(User)
+
 }
