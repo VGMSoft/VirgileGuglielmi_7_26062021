@@ -19,8 +19,8 @@
 
 <script lang="ts">
 import {defineComponent, ref} from 'vue'
-import {loggedUser} from "../config/axios.config";
-import {PostModel} from "../models/postModel";
+import {loggedUser} from "../config/axios.config"
+import {PostModel} from "../models/postModel"
 
 //---------------------------------------------------
 const createProfile = () => {
