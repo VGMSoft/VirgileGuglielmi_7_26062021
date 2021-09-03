@@ -12,6 +12,8 @@ export const initUser = () => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     pseudo: DataTypes.STRING,
+    firstname: DataTypes.STRING,
+    lastname: DataTypes.STRING,
     avatar_url: DataTypes.STRING,
     signup_date: DataTypes.DATE,
     pwd_set: DataTypes.DATE,
