@@ -1,9 +1,74 @@
-//$theme-colors: (
-//        "primary": #D15059,
-//        "secondary": #091E43,
-//        "light": #AEAEB0
-//);
-//
+$theme-colors: (
+        'primary': #D15059,
+        'secondary': #AEAEB0,
+        'tertiary': #091E43,
+        'light': lighten(#AEAEB0, 27.5%)
+);
+
+//responsive---------------------------------------------------------------------------------
+$breakpoints: (
+        mobile: 375px,
+        tablet: 768px,
+        desktop: 1280px,
+        widescreen: 1440px,
+);
+@mixin mobile-only {
+  @media screen and (min-width: map-get($breakpoints, mobile)) and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media screen and (min-width: map-get($breakpoints, tablet)) {
+    @content;
+  }
+}
+
+@mixin desktop-only {
+  @media screen and (min-width: map-get($breakpoints, desktop)) {
+    @content;
+  }
+}
+
+@mixin widescreen-only {
+  @media screen and (min-width: map-get($breakpoints, widescreen)) {
+    @content;
+  }
+}
+
+// END responsive---------------------------------------------------------------------------------
+
+.switch {
+  cursor: pointer;
+  color: map-get($theme-colors, primary);
+  //width: 10rem;
+  &:hover {
+    color: map-get($theme-colors, secondary);
+  }
+}
+
+.card {
+  @include mobile-only {
+    width: 100vw;
+  }
+;
+  @include tablet-only {
+    width: 75vw;
+  }
+;
+  @include desktop-only {
+    width: 50vw;
+  }
+;
+}
+
+
+.profile-pic {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+
 //.container {
 //  height: 100rem;
 //  //background-image: url("");
@@ -12,15 +77,26 @@
 //  background-size: cover;
 //}
 //
-.profile-pic {
-  width: 2.5rem;
-  height: 2.5rem;
-}
-
-.welcome {
-  height: 100vh;
-}
-
+//.welcome {
+//  height: 100vh;
+//}
+//
+//.perso-link{
+//  text-decoration: none;
+//  color: #AEAEB0;
+//  margin-left: 1em;
+//  margin-right: 1em;
+//  &:hover{
+//    color: $primary
+//  }
+//  &:not(:last-child)::after{
+//    //content: "|";
+//  }
+//}
+//.router-link-active {
+//  font-weight: bold;
+//  color:#091E43;
+//}
 //
 //.rounded {
 //  &-pill {
@@ -35,5 +111,6 @@
 //    }
 //  }
 //}
+
 
 @import "~bootstrap/scss/bootstrap";
