@@ -25,6 +25,12 @@
       </div>
     </div>
   </nav>
+  <nav class="d-flex">
+    <router-link to="/" class="perso-link">Home</router-link>
+    <router-link to="/auth" class="perso-link">Auth</router-link>
+    <router-link to="/posts" class="perso-link">Posts</router-link>
+    <!--    <button @click="showProfile('Catalina')" class="btn btn-outline-primary m-1">Profile</button>-->
+  </nav>
 </template>
 
 <script lang="ts">

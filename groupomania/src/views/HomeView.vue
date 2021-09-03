@@ -9,6 +9,7 @@
 import {defineComponent} from 'vue'
 import Login from "@/components/LoginCompo.vue"
 
+
 export default defineComponent({
   name: 'Home',
   components: {Login},

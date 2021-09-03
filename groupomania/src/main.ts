@@ -16,11 +16,13 @@ import Navbar from "@/components/NavbarCompo.vue"
 import Profile from "@/components/ProfileCompo.vue"
 import Post from "@/components/PostCompo.vue"
 import Comment from "@/components/CommentCompo.vue"
+import store from "@/store";
 
 // library.add(faThumbsUp, faComment, faShare)
 
 createApp(App)
   .use(router)
+  .use(store)
   // .component('font-awesome-icon', FontAwesomeIcon)
   .component('Navbar',Navbar)
   .component('SignUp',SignUp)

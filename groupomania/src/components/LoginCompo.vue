@@ -22,16 +22,11 @@
           <label for="InputEmail" class="form-label mb-0">Email</label>
           <input type="email" autocomplete="email" class="form-control" id="InputEmail" aria-describedby="emailHelp"
                  v-model="user.email">
-          <div id="emailHelp" class="form-text fw-lighter mt-0">Nous prenons soin de vos données personnelles.</div>
         </div>
         <div class="mb-2">
           <label for="InputPassword" class="form-label mb-0">Mot de passe</label>
           <input type="password" autocomplete="current-password" class="form-control" id="InputPassword"
                  v-model="user.password">
-        </div>
-        <div class="mb-2 form-check">
-          <input type="checkbox" class="form-check-input" id="logCheck">
-          <label class="form-check-label mb-0" for="logCheck">Rester connecté</label>
         </div>
         <div v-if="mode === 'login'" class="d-flex flex-lg-row flex-column justify-content-center">
           <p class="text-center fw-light mb-0 p-1">Pas encore de compte ?</p>
@@ -51,6 +46,7 @@
                   @click="createAccount()">
             Inscription
           </button>
+
         </div>
       </form>
     </div>
@@ -91,7 +87,7 @@ export default defineComponent({
       return !!input.value.match(regex);
     },
     createAccount: function () {
-      this.$store.dispatch("createAccount",{
+      this.$store.dispatch("createAccount", {
         pseudo: this.pseudo,
         firstname: this.firstname,
         lastname: this.lastname,
@@ -99,7 +95,6 @@ export default defineComponent({
         password: this.password
       })
     }
-
   },
   computed: {
     validated: function () {
@@ -109,7 +104,7 @@ export default defineComponent({
         return !!(this.user.pseudo !== "" && this.user.password)
       }
     }
-  }
+  },
 
 })
 </script>

@@ -2,9 +2,9 @@ import {createRouter, createWebHistory} from 'vue-router'
 
 import Home from '@/views/HomeView.vue'
 import Posts from '@/views/PostsView.vue'
-import Auth from '@/views/AuthView.vue'
 import Profile from '@/views/ProfileView.vue'
 import NotFound from '@/views/NotFoundView.vue'
+import Login from '@/components/LoginCompo.vue'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -17,13 +17,14 @@ export const router = createRouter({
         title: 'Home'
       }
     }, {
-      path: '/auth',
-      name: 'auth',
-      component: Auth,
+      path: '/login',
+      name: 'login',
+      component: Login,
       meta: {
-        title: 'Auth'
+        title: 'Login'
       }
-    }, {
+    },
+    {
       path: '/posts',
       name: 'posts',
       component: Posts,
@@ -43,7 +44,7 @@ export const router = createRouter({
       name: 'NotFound',
       component: NotFound,
       meta: {
-        title: ' 404 Not Found'
+        title: ' 404 - Not Found'
       },
       props: true
     }

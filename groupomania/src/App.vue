@@ -1,4 +1,4 @@
-<template >
+<template>
   <router-view></router-view>
 </template>
 
@@ -6,7 +6,7 @@
 import {defineComponent} from 'vue'
 
 export default defineComponent({
-  name: 'App'
+  name: 'App',
 })
 </script>
 
