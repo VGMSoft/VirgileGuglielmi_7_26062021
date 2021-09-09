@@ -1,10 +1,12 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
-import Home from '@/views/HomeView.vue'
-import Posts from '@/views/PostsView.vue'
-import Profile from '@/views/ProfileView.vue'
-import NotFound from '@/views/NotFoundView.vue'
-import Login from '@/components/LoginCompo.vue'
+import HomeView from '@/views/HomeView.vue'
+import SignUpView from '@/views/SignUpView.vue'
+import SignInView from '@/views/SignInView.vue'
+import PostsView from '@/views/PostsView.vue'
+import ProfileView from '@/views/ProfileView.vue'
+import NotFoundView from "@/views/NotFoundView.vue"
+
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -12,29 +14,35 @@ export const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: Home,
+      component: HomeView,
       meta: {
         title: 'Home'
       }
     }, {
-      path: '/login',
-      name: 'login',
-      component: Login,
+      path: '/signup',
+      name: 'signup',
+      component: SignUpView,
       meta: {
-        title: 'Login'
+        title: 'Signup'
       }
-    },
-    {
+    }, {
+      path: '/signin',
+      name: 'signin',
+      component: SignInView,
+      meta: {
+        title: 'Signin'
+      }
+    }, {
       path: '/posts',
       name: 'posts',
-      component: Posts,
+      component: PostsView,
       meta: {
         title: 'Posts'
       }
     }, {
       path: '/profile/:name',
       name: 'profile',
-      component: Profile,
+      component: ProfileView,
       meta: {
         title: 'Profile'
       },
@@ -42,7 +50,7 @@ export const router = createRouter({
     }, {
       path: '/:pathMatch(.*)',
       name: 'NotFound',
-      component: NotFound,
+      component: NotFoundView,
       meta: {
         title: ' 404 - Not Found'
       },

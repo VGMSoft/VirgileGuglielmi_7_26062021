@@ -1,15 +1,18 @@
 <template>
-  <Navbar/>
-  <h1>Posts</h1>
+  <h1>Profile</h1>
+  <p>{{ name }}</p>
+  <Profile/>
+<!--  <Profile :name="name"/>-->
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import Navbar from "@/components/NavbarCompo.vue";
+import Profile from "@/components/ProfileCompo.vue";
 
 export default defineComponent({
-  name: 'Post',
-  components: {Navbar},
+  name: 'Profile',
+  components: {Profile},
+  props: ['name'],
   setup() {
     return {}
   }

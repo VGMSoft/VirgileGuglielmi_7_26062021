@@ -38,10 +38,8 @@ $breakpoints: (
 
 // END responsive---------------------------------------------------------------------------------
 
-.switch {
-  cursor: pointer;
+.routerlink {
   color: map-get($theme-colors, primary);
-  //width: 10rem;
   &:hover {
     color: map-get($theme-colors, secondary);
   }

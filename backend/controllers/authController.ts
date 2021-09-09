@@ -44,6 +44,7 @@ export const signup = async (req: Request, res: Response, next) => {
 
 
 export const login = async (req, res, next) => {
+
   try {
     const user = await User.findOne({where: {email: encrypt(req.body.email, key, iv)}})
     if (!user) {

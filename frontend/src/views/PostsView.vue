@@ -1,17 +1,15 @@
 <template>
-  <h1>Profile</h1>
-  <p>{{ name }}</p>
-<!--  <Profile :name="name"/>-->
+  <h1>PostsView</h1>
+  <PostCompo></PostCompo>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-// import Profile from "@/components/ProfileCompo.vue";
+import PostCompo from "@/components/PostCompo.vue";
 
 export default defineComponent({
-  name: 'Profile',
-  // components: {Profile},
-  props: ['name'],
+  name: 'PostsView',
+  components: {PostCompo},
   setup() {
     return {}
   }

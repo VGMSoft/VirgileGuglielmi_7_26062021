@@ -7,7 +7,7 @@ const passport = require('passport')
 
 const profileRoute: Router = express.Router()
 
-profileRoute.get('/', passport.authenticate('jwt', {session: false}), userCtrl.getAllProfiles)
+// profileRoute.get('/', passport.authenticate('jwt', {session: false}), userCtrl.getAllProfiles)
 profileRoute.get('/:id', passport.authenticate('jwt', {session: false}), userCtrl.getProfile)
 profileRoute.put('/:id', passport.authenticate('jwt', {session: false}), userCtrl.editProfile)
 profileRoute.delete('', passport.authenticate('jwt', {session: false}), userCtrl.deleteProfile)

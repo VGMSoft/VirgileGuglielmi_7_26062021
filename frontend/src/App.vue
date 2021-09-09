@@ -12,4 +12,5 @@ export default defineComponent({
 
 <style lang="scss">
 @import '../scss/main';
+html{height:100vh}
 </style>

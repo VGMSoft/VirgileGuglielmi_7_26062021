@@ -13,7 +13,8 @@ export const initPost = () => {
     post_content: DataTypes.TEXT,
     post_date: DataTypes.DATE
   }, {sequelize, modelName: 'posts'})
-
+0
+  //Association
   User.hasMany(Post)
   Post.belongsTo(User)
 

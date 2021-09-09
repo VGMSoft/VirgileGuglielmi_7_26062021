@@ -2,13 +2,12 @@ import {Request, Response} from "express"
 import Post from "../models/TS/postModel"
 import User from "../models/TS/userModel"
 
-export const createPost = (req: Request, res: Response, next) => {
-  Post.create({...req.body}, {
-    include: [{
-      association: Post.belongsTo(User),
-      include: [ User.hasMany(Post) ]
-    }]
-  })
+export const createPost = (req: any, res: Response, next) => {
+  // console.log(req.user.dataValues.id)
+  const user = req.user.dataValues
+  user.id
+
+  Post.create({...req.body}, )
     .then(() => res.status(201).json({message: 'Post saved successfully!'}))
     .catch(error => res.status(400).json({error}))
 }

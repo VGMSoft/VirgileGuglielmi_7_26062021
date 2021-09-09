@@ -10,8 +10,8 @@ import {router} from './router'
 
 
 //Components
-import SignUp from "@/components/SignUpCompo.vue"
-import SignIn from "@/components/SignInCompo.vue"
+// import SignUpCompo from "@/components/SignUpCompo.vue"
+// import SignInCompo from "@/components/SignInCompo.vue"
 import Navbar from "@/components/NavbarCompo.vue"
 import Profile from "@/components/ProfileCompo.vue"
 import Post from "@/components/PostCompo.vue"
@@ -25,8 +25,8 @@ createApp(App)
   .use(store)
   // .component('font-awesome-icon', FontAwesomeIcon)
   .component('Navbar',Navbar)
-  .component('SignUp',SignUp)
-  .component('SignIn',SignIn)
+  // .component('SignUpCompo',SignUpCompo)
+  // .component('SignInCompo',SignInCompo)
   .component('Profile',Profile)
   .component('Post',Post)
   .component('Comment',Comment)

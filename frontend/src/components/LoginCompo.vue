@@ -30,11 +30,11 @@
         </div>
         <div v-if="mode === 'login'" class="d-flex flex-lg-row flex-column justify-content-center">
           <p class="text-center fw-light mb-0 p-1">Pas encore de compte ?</p>
-          <a class="switch text-center mb-0 p-1" @click="switchToSignUp">Créer un compte</a>
+          <a class="routerlink text-center mb-0 p-1" @click="switchToSignUp">Créer un compte</a>
         </div>
         <div v-if="mode === 'create'" class="d-flex flex-lg-row flex-column justify-content-center">
           <p class="text-center fw-light mb-0 p-1">Déjà un compte ?</p>
-          <a class="switch text-center mb-0 p-1" @click="switchToSignIn">Se connecter</a>
+          <a class="routerlink text-center mb-0 p-1" @click="switchToSignIn">Se connecter</a>
         </div>
 
         <div class="d-grid gap-2 mt-3">
@@ -57,7 +57,7 @@
 import {defineComponent} from "vue";
 
 export default defineComponent({
-  name: "Login",
+  name: "LoginCompo",
   data: function () {
     return {
       mode: 'login',

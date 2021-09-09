@@ -1,18 +1,16 @@
 <template>
+  <h1>HomeView</h1>
   <div class="d-flex flex-column justify-content-center align-items-center welcome h-100 my-5">
-    <h1 class="text-center text-primary mb-3 m-sm-3">Bienvenue sur Groupomania !</h1>
-    <Login/>
+  <router-link to="/signup" class="routerlink text-center mb-0 p-1 display-1">ENTRER</router-link>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import Login from "@/components/LoginCompo.vue"
-
 
 export default defineComponent({
-  name: 'Home',
-  components: {Login},
+  name: 'HomeView',
+  components: {},
   setup() {
     return {}
   }
@@ -21,4 +19,9 @@ export default defineComponent({
 
 <style lang="scss">
 @import '../../scss/main';
+html{
+  background-image: url(./../assets/logos/icon-above-font.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
 </style>
