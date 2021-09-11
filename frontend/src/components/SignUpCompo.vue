@@ -2,8 +2,7 @@
   <div class="d-flex flex-column justify-content-center align-items-center welcome h-100 my-5">
     <div class="card bg-light">
       <div class="card-body">
-        <form>
-          <!--      <form @submit.prevent="signup()">-->
+        <form @submit.prevent="createAccount">
           <div class="mb-2">
             <label for="InputPseudo" class="form-label mb-0">Pseudo</label>
             <input type="text" class="form-control" id="InputPseudo" v-model="userData.pseudo" autocomplete="username">
@@ -35,8 +34,7 @@
           </div>
 
           <div class="d-grid gap-2 mt-3">
-            <button type="submit" class="btn btn-primary" :disabled="!validated"
-                    @click="createAccount()">
+            <button type="submit" class="btn btn-primary" :disabled="!validated">
               Inscription
             </button>
           </div>
@@ -48,20 +46,12 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import {loggedUser} from "../config/axios.config"
+import {http} from "../config/axios.config"
 import {UserModel} from "../models/userModel"
 
 export default defineComponent({
   name: "SignUpCompo",
   setup() {
-    const signup = async () => {
-      try {
-        const response = await loggedUser.post<Array<UserModel>>('/auth/signup')
-        return response.data
-      } catch (err) {
-        return err
-      }
-    }
     const userData = {
       pseudo: "",
       firstname: "",
@@ -69,11 +59,20 @@ export default defineComponent({
       email: "",
       password: ""
     }
+    const createAccount = async () => {
+      try {
+        const response = await http.post<UserModel>('/auth/signup', userData)
+        return response.data
+      } catch (err) {
+        return err
+      }
+
+    }
     const validated = () => {
       return !!(userData.pseudo !== "" && userData.firstname !== "" && userData.lastname && userData.email !== "" && userData.password)
     }
 
-    return {signup, userData: userData, validated}
+    return {createAccount, userData: userData, validated}
   }
 })
 
