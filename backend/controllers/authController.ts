@@ -17,40 +17,32 @@ export const signup = async (req: Request, res: Response, next) => {
     if (email) {
       res.status(405).json({message: 'Account already exists !'})
     } else {
-      try {
-        //Password is minimum 8 chars, 1 uppercase, 1 letter, 1 number, 1 special char
-        const pass = checkpass(req.body.password)
-        if (pass.match(passRegex)) {
-          let hash = await bcrypt.hash(pass, 10)
-          try {
-            await User.create({
-              ...req.body,
-              email: encrypt(req.body.email, key, iv),
-              password: hash
-            })
-            res.status(201).json({message: 'User saved successfully!'})
-          } catch (error) {
-            res.status(401).json({error})
-          }
-        }
-      } catch {
-        res.status(404).json({message: 'Le mot de passe fourni ne correspond pas au format demandé !'})
+      //Password is minimum 8 chars, 1 uppercase, 1 letter, 1 number, 1 special char
+      const pass = checkpass(req.body.password)
+      if (pass.match(passRegex)) {
+        let hash = await bcrypt.hash(pass, 10)
+        await User.create({
+          ...req.body,
+          email: encrypt(req.body.email, key, iv),
+          password: hash
+        })
+        res.status(201).json({message: 'User saved successfully!'})
+
+      } else {
+        res.status(400).json({message: "Invalid password format"});
       }
     }
-  } catch (error) {
-    res.status(500).json({error})
+  } catch (err) {
+    res.status(500).json({message: err.message})
   }
 }
 
-
 export const login = async (req, res, next) => {
-
   try {
     const user = await User.findOne({where: {email: encrypt(req.body.email, key, iv)}})
     if (!user) {
       return res.status(401).json({error: 'Utilisateur non trouvé !'})
-    }
-    try {
+    } else {
       const valid = await bcrypt.compare(req.body.password, user.password)
       if (!valid) {
         return res.status(401).json({error: 'Mot de passe incorrect !'})
@@ -64,10 +56,8 @@ export const login = async (req, res, next) => {
           )
         })
       }
-    } catch (error) {
-      res.status(500).json({error})
     }
-  } catch (error) {
-    res.status(500).json({error})
+  } catch (err) {
+    res.status(500).json({message: err.message})
   }
 }
