@@ -24,7 +24,7 @@ app.use(passport.initialize())
 //CORS------------------------------------------------------------------------------------------------------------------
 import cors from "cors"
 let corsOptions: { origin: string } = {
-  origin: `${process.env.CORS_OPTION}`
+  origin: `${process.env.CORS_ORIGIN}`
 }
 app.use(cors(corsOptions))
 
