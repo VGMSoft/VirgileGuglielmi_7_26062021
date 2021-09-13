@@ -4,13 +4,14 @@
 </template>
 
 <script>
+import {defineComponent} from 'vue'
 import SignInCompo from "@/components/SignInCompo.vue";
-export default {
-  name: "SigninView",
+
+export default defineComponent({
+  name: "SignInView",
   components: {SignInCompo}
-}
+})
 </script>
 
 <style scoped>
-
 </style>

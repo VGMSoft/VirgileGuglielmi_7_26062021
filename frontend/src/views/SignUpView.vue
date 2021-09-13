@@ -1,14 +1,12 @@
 <template>
-<h1>SignUpView</h1>
-  <div>
-    <SignUpCompo/>
-  </div>
-
+  <h1>SignUpView</h1>
+  <SignUpCompo/>
 </template>
 
 <script>
 import {defineComponent} from 'vue'
 import SignUpCompo from "@/components/SignUpCompo.vue";
+
 export default defineComponent({
   name: "SignUpView",
   components: {SignUpCompo}
@@ -16,5 +14,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column justify-content-center align-items-center welcome h-100 m-0">
+  <div class="d-flex flex-column justify-content-center align-items-center h-100 w-100 my-5">
     <div class="card bg-light">
       <div class="card-body">
         <form @submit.prevent="connectAccount">
@@ -31,7 +31,6 @@
 import {defineComponent} from 'vue'
 import {http} from "../config/axios.config"
 import {createCookie} from "../config/cookie.utils"
-import {UserModel} from "../models/userModel"
 import {useRouter} from "vue-router";
 
 
@@ -47,6 +46,7 @@ export default defineComponent({
         const response = await http.post('/auth/login', userData)
         if (response.data) {
           createCookie('userToken', JSON.stringify(`${response.data.token}`), 1)
+          createCookie('userId', JSON.stringify(`${response.data.userId}`), 1)
           useRouter()
         }
         // return response.data
