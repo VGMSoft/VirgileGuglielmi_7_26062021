@@ -1,15 +1,17 @@
 <template>
   <h1>PostsView</h1>
-  <PostCompo></PostCompo>
+  <PostCompo/>
+  <NewPostCompo/>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
 import PostCompo from "@/components/PostCompo.vue";
+import NewPostCompo from "@/components/NewPostCompo.vue";
 
 export default defineComponent({
   name: 'PostsView',
-  components: {PostCompo},
+  components: {NewPostCompo, PostCompo},
   setup() {
     return {}
   }

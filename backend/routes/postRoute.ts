@@ -1,9 +1,7 @@
 import * as express from 'express'
 import {Router} from 'express'
 import * as postCtrl from '../controllers/postController'
-const passport = require('passport')
-
-
+import passport from 'passport'
 
 const postRoute: Router = express.Router()
 

@@ -10,8 +10,8 @@ export const initPost = () => {
       autoIncrement: true,
       primaryKey: true
     },
-    post_content: DataTypes.TEXT,
-    post_date: DataTypes.DATE
+    content: DataTypes.TEXT,
+    date: DataTypes.DATE
   }, {sequelize, modelName: 'posts'})
 0
   //Association
