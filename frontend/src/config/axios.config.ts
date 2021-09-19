@@ -1,22 +1,21 @@
 import axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
-import {readCookie} from './cookie.utils'
+import Cookies from 'js-cookie'
 
 const commonConfig = {
   baseURL: 'http://localhost:3000/',
 }
 
-export const loggedUser = axios.create({...commonConfig})
+export const http = axios.create({...commonConfig})
 
-loggedUser.interceptors.request.use((config: AxiosRequestConfig) => {
-  //TODO
-  const token = readCookie(process.env.userToken)
-  if (token) {
-    config.headers = {Authorization: `Bearer ${token}`}
+http.interceptors.request.use((config: AxiosRequestConfig) => {
+  const userToken = Cookies.get('userToken')
+  if (userToken) {
+    config.headers = {Authorization: `Bearer ${userToken}`}
   }
   return config
 })
 
-loggedUser.interceptors.response.use(
+http.interceptors.response.use(
   (response: AxiosResponse) => response,
   error => {
     return Promise.reject(error)
