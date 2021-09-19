@@ -7,7 +7,7 @@ import Post from "../TS/postModel";
 export const initLike = () => {
 
   Like.init({
-    like_state: DataTypes.BOOLEAN
+    state: DataTypes.BOOLEAN
   }, {sequelize, modelName: 'likes'})
 
   Like.belongsTo(Post)

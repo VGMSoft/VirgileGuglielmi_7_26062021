@@ -11,8 +11,8 @@ export const initComment = () => {
       autoIncrement: true,
       primaryKey: true,
     },
-    comment_content: DataTypes.TEXT,
-    comment_date: DataTypes.DATE
+    content: DataTypes.TEXT,
+    date: DataTypes.DATE
   }, {sequelize, modelName: 'comments'})
 
   Comment.belongsTo(Post)
