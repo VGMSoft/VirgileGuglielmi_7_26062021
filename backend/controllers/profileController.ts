@@ -12,11 +12,14 @@ import {sanitize} from '../lib/sanitize'
 //   }
 // }
 
-export const getProfile = async (req: Request, res: Response, next) => {
+export const getProfile = async (req, res: Response, next) => {
+  const userId: string = req.user.dataValues.id
   try {
-    const users = await User.findOne({where: {id: req.params.id}})
+    const users = await User.findOne({where: {id: userId}})
       .then(user => res.status(200).json(user))
-  } catch(error) {res.status(404).json({error})}
+  } catch (error) {
+    res.status(404).json({error})
+  }
 }
 
 
