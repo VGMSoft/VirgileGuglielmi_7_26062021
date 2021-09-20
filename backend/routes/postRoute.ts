@@ -1,6 +1,7 @@
 import * as express from 'express'
 import {Router} from 'express'
 import * as postCtrl from '../controllers/postController'
+// import multer from "../middleware/multer.config"
 import passport from 'passport'
 
 const postRoute: Router = express.Router()
