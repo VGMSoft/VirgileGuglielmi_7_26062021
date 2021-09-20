@@ -15,7 +15,7 @@ export const initPost = () => {
   }, {sequelize, modelName: 'posts'})
 0
   //Association
-  User.hasMany(Post)
-  Post.belongsTo(User)
+  User.hasMany(Post, {foreignKey: 'userId'})
+  Post.belongsTo(User, {foreignKey: 'userId'})
 
 }

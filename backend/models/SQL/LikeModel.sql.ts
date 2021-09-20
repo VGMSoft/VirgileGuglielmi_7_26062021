@@ -13,6 +13,6 @@ export const initLike = () => {
   Like.belongsTo(Post)
   Post.hasMany(Like)
 
-  Like.belongsTo(User)
-  User.hasMany(Like)
+  Like.belongsTo(User, {foreignKey: 'postId'})
+  User.hasMany(Like, {foreignKey: 'postId'})
 }
