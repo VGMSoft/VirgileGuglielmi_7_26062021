@@ -11,6 +11,8 @@ import * as fs from "fs"
 const PRIV_KEY = fs.readFileSync(path.join(__dirname, './../lib/keyGen', 'id_rsa_priv.pem'), 'utf8')
 const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
 
+
+//OK
 export const signup = async (req: Request, res: Response, next) => {
   try {
     let email = await User.findOne({where: {email: encrypt(req.body.email, key, iv)}})
@@ -37,6 +39,7 @@ export const signup = async (req: Request, res: Response, next) => {
   }
 }
 
+//OK
 export const login = async (req, res, next) => {
   try {
     const user = await User.findOne({where: {email: encrypt(req.body.email, key, iv)}})
