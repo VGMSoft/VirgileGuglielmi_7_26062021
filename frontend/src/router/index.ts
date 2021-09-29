@@ -1,12 +1,14 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import {createRouter, createWebHistory, RouteLocationNormalized} from 'vue-router'
 
 import HomeView from '@/views/HomeView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import SignInView from '@/views/SignInView.vue'
 import PostsView from '@/views/PostsView.vue'
+import NewPostView from "@/views/NewPostView.vue"
 import ProfileView from '@/views/ProfileView.vue'
 import NotFoundView from "@/views/NotFoundView.vue"
-
+import CardView from "@/views/CardView.vue"
+import Cookies from "js-cookie";
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -18,7 +20,9 @@ export const router = createRouter({
       meta: {
         title: 'Home'
       }
-    }, {
+    },
+    //auth
+    {
       path: '/signup',
       name: 'signup',
       component: SignUpView,
@@ -29,10 +33,22 @@ export const router = createRouter({
       path: '/signin',
       name: 'signin',
       component: SignInView,
+      // redirect: '/posts',
       meta: {
         title: 'Signin'
       }
-    }, {
+    },
+    //profile
+    {
+      path: '/profile/',
+      name: 'profile',
+      component: ProfileView,
+      meta: {
+        title: 'Profile'
+      }
+    },
+    //posts
+    {
       path: '/posts',
       name: 'posts',
       component: PostsView,
@@ -40,13 +56,12 @@ export const router = createRouter({
         title: 'Posts'
       }
     }, {
-      path: '/profile/:name',
-      name: 'profile',
-      component: ProfileView,
+      path: '/posts/new',
+      name: 'newPost',
+      component: NewPostView,
       meta: {
-        title: 'Profile'
-      },
-      props: true
+        title: 'New Post'
+      }
     }, {
       path: '/:pathMatch(.*)',
       name: 'NotFound',
@@ -55,11 +70,31 @@ export const router = createRouter({
         title: ' 404 - Not Found'
       },
       props: true
-    }
+    },
+    {
+      path: '/card',
+      name: 'card',
+      component: CardView,
+      meta: {
+        title: 'test'
+      }
+    },
   ]
 })
 
 router.afterEach((to) => {
   document.title = to.meta.title.toString()
 })
+
+router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+  if (to.name === 'signup' || to.name === 'signin' || to.name === 'home') {
+    return true
+  } else {
+    if (Cookies.get('userToken') !== null && Cookies.get('userToken') !== "") {
+      return true
+    } else {
+      // return false
+    }
+  }
+});
 
