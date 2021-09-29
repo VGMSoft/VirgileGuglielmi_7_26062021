@@ -1,20 +1,26 @@
 <template>
   <form @submit.prevent="connectAccount">
     <div class="mb-2">
-      <label for="InputEmail" class="form-label mb-0">Email</label>
-      <input type="email" class="form-control" id="InputEmail" v-model="userData.email" autocomplete="email">
+      <label for="Email" class="form-label mb-0">Email :</label>
+      <input type="email" autocomplete="email" class="form-control"
+             :class="{ 'is-valid': isValid, 'is-invalid': isInvalid }" id="Email" aria-describedby="emailHelp"
+             v-model.trim="userVal.email.value">
+      <div class="error text-red form-text">{{ userVal.email.errorMessage }}</div>
     </div>
+
     <div class="mb-2">
-      <label for="InputPassword" class="form-label mb-0">Mot de passe</label>
-      <input type="password" autocomplete="current-password" class="form-control" id="InputPassword"
-             v-model="userData.password">
+      <label for="Password" class="form-label mb-0">Mot de passe :</label>
+      <input type="password" name="password" autocomplete="current-password" class="form-control"
+             :class="{ 'is-valid': isValid, 'is-invalid': isInvalid }" id="Password"
+             v-model.trim="userVal.password.value">
+      <div class="error text-red form-text">{{ userVal.password.errorMessage }}</div>
     </div>
     <div class="d-flex flex-lg-row flex-column justify-content-center">
       <p class="text-center fw-light mb-0 p-1">Pas encore de compte ?</p>
-      <router-link to="/signup" class="routerlink text-center mb-0 p-1">S'inscrire</router-link>
+      <router-link to="/signup" class="nav-link text-red text-center fw-bolder mb-0 p-1">S'inscrire</router-link>
     </div>
     <div class="d-grid gap-2 mt-3">
-      <button type="submit" class="btn btn-primary" :disabled="isValid()">
+      <button type="submit" class="btn btn-outline-danger" :disabled="!formMeta.valid">
         Connexion
       </button>
     </div>
@@ -22,23 +28,40 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import {defineComponent, reactive, ref} from 'vue'
 import {http} from "@/config/axios.config"
 import Cookies from 'js-cookie'
 import {useRouter} from "vue-router";
-
+import {defineRule, useField, useForm} from 'vee-validate';
+import AllRules from '@vee-validate/rules';
 
 export default defineComponent({
   name: "SignInCompo",
-  setup: function () {
+  setup() {
+    //Bootstrap Client side validation
+    const isValid = ref(false)
+    const isInvalid = ref(false)
+
+    //Vee-validate rules
+    Object.keys(AllRules).forEach(rule => {
+      defineRule(rule, AllRules[rule]);
+    });
+
+    const {meta: formMeta, values: formValues} = useForm()
+
+    const userVal = reactive({
+      email: useField('email', {required: true, email: true}),
+      password: useField('password', {
+        required: true,
+        regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+      }),
+    })
+
     const router = useRouter()
-    const userData = {
-      email: "",
-      password: ""
-    }
+
     const connectAccount = async () => {
       try {
-        const response = await http.post('/auth/login', userData)
+        const response = await http.post('/auth/login', formValues)
         if (response.data) {
           Cookies.set('userToken', `${response.data.token}`, {expires: 1})
           Cookies.set('userId', `${response.data.userId}`, {expires: 1})
@@ -50,17 +73,8 @@ export default defineComponent({
       }
     }
 
-    const isValid = () => {
-      // return !!(userData.email !== "" && userData.password !== "")
-      if (userData.email !== "" && userData.password !== "") {
-        return true
-      } else {
-        return false
-      }
-    }
-    console.log(isValid())
 
-    return {connectAccount, userData, isValid}
+    return {connectAccount, userVal, isValid, isInvalid, formMeta}
   }
 })
 </script>

@@ -1,24 +1,25 @@
 <template>
-  <h1>Profile</h1>
-  <p>{{ name }}</p>
+  <Navbar>
+    <li class="nav-item m-2">
+      <router-link to="/posts" class="text-decoration-none">
+        <font-awesome-icon :icon="['fas', 'envelope']"/>
+        Posts
+      </router-link>
+    </li>
+  </Navbar>
   <Profile/>
-<!--  <Profile :name="name"/>-->
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
 import Profile from "@/components/ProfileCompo.vue";
+import Navbar from "@/components/NavbarCompo.vue";
 
 export default defineComponent({
-  name: 'Profile',
-  components: {Profile},
-  props: ['name'],
-  setup() {
-    return {}
-  }
+  name: 'ProfileView',
+  components: {Profile, Navbar}
 })
 </script>
 
 <style lang="scss">
-@import '../../scss/main';
 </style>

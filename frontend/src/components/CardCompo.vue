@@ -2,7 +2,7 @@
   <div class="d-flex flex-column justify-content-center align-items-center h-100 w-100 my-5">
     <div class="card bg-light">
       <div class="card-body">
-        <h4 class="card-title text-primary">{{ title }}</h4>
+        <h2 class="card-title text-red text-center">{{ title }}</h2>
         <p class="card-text">
           <slot></slot>
         </p>

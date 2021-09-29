@@ -1,6 +1,6 @@
 <template>
   <Card title="Créer un compte" >
-    <Form :validation-schema="formSchema.validation" :initial-values="formSchema.values">
+    <Form :validation-schema="formSchema.validation" :initial-values="formSchema.values" @submit.prevent="">
       <div class="mb-2">
         <div v-for="{ as, name, label, ...attrs } in formSchema.fields" :key="name">
           <label :for="name" class="form-label mb-0 fw-light">{{ label }}</label>

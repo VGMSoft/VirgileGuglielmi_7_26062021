@@ -1,13 +1,25 @@
 <template>
-$END$
+  <div class="d-flex flex-column align-items-center">
+    <img class="brand__spinner w-1"
+         src="./../assets/logos/icon-alpha.png"
+         alt="loading spinner">
+    <p class="text-primary">Loading ...</p>
+  </div>
 </template>
 
 <script>
-export default {
-name: "SpinnerCompo"
-}
+import {defineComponent} from "vue";
+
+export default defineComponent({
+  name: "Spinner"
+})
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.brand {
+  &__spinner {
+    width: 25vw;
+    animation: rotate-vert-center 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
+  }
+}
 </style>
