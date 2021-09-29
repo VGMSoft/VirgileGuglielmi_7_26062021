@@ -10,7 +10,7 @@ class User extends Model {
   pseudo: string | undefined
   avatar_url: string | undefined
   signup_date: Date | undefined
-  pwd_set: Date | undefined
+  role: string | undefined
 }
 
 export default User

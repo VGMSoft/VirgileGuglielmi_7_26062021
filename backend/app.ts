@@ -11,9 +11,10 @@ const app: Application = express()
 console.log(String.fromCodePoint(0x1F44B), 'Welcome to groupomania backend')
 
 //DB connect & init-----------------------------------------------------------------------------------------------------
-import {connectDB, initDB} from "./models"
+import {connectDB, initDB, setAdmin} from "./models"
 connectDB()
 initDB()
+setAdmin()
 
 //JWT Auth--------------------------------------------------------------------------------------------------------------
 const passport = require("passport")

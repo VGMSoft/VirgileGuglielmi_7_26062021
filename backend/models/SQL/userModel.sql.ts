@@ -16,7 +16,7 @@ export const initUser = () => {
     lastname: DataTypes.STRING,
     avatar_url: DataTypes.STRING,
     signup_date: DataTypes.DATE,
-    pwd_set: DataTypes.DATE,
+    role: DataTypes.STRING
   }, {sequelize, modelName: 'users'})
 }
 
