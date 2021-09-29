@@ -1,35 +1,9 @@
-@import "themes/colors";
-@import "utils/breakpoints";
-@import "utils/mixins";
+//@import "themes/colors";
+//@import "utils/breakpoints";
+//@import "utils/mixins";
 @import "utils/keyframes";
+@import "themes/colors";
 
-
-.routerlink {
-  display:inline-block;
-  color: map-get($theme-colors, primary);
-  &:hover {
-    color: map-get($theme-colors, secondary);
-    font-weight: bold;
-  }
-  &:active{
-    color:map-get($theme-colors, tertiary)
-  }
-}
-
-.card {
-  @include mobile-only {
-    width: 100vh;
-  }
-;
-  @include tablet-only {
-    width: 100vw;
-  }
-;
-  @include desktop-only {
-    width: 100vw;
-  }
-;
-}
 
 .profile-pic {
   width: 2.5rem;
