@@ -20,7 +20,9 @@ export const getAllPosts = async (req: Request, res: Response, next) => {
       include: [{
         model: User,
         required: true
-      }]
+      }], order: [
+        ['date', 'DESC']
+      ]
     })
     res.status(200).json(posts)
   } catch
