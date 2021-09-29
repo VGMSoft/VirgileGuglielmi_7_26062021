@@ -5,20 +5,31 @@ import {router} from './router'
 
 //Bootstrap JS
 import 'bootstrap/js/dist/dropdown';
+import 'bootstrap/js/dist/collapse';
 
 //Fontawesome
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import {
+  faCog,
   faComment,
   faEllipsisH,
+  faEnvelope,
   faEye,
   faHome,
+  faLock,
+  faMinusCircle,
   faPen,
+  faPlusCircle,
+  faPowerOff,
   faShare,
   faThumbsUp,
-  faTrash
+  faTrash,
+  faUser
 } from '@fortawesome/free-solid-svg-icons'
+//VeeValidate
+import {defineRule} from 'vee-validate';
+import {confirmed, email, min, regex, required} from '@vee-validate/rules';
 
 library.add(
   faThumbsUp,
@@ -28,7 +39,20 @@ library.add(
   faHome,
   faEye,
   faTrash,
-  faEllipsisH)
+  faEllipsisH,
+  faPowerOff,
+  faUser,
+  faEnvelope,
+  faPlusCircle,
+  faMinusCircle,
+  faCog,
+  faLock)
+
+defineRule('min', min);
+defineRule('email', email);
+defineRule('regex', regex);
+defineRule('required', required);
+defineRule('confirmed', confirmed);
 
 //App
 createApp(App)
