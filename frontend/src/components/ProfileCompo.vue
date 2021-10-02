@@ -29,8 +29,9 @@
               </div>
             </div>
           </div>
-          <p class="card-text"><strong>Nom complet: </strong>{{ user.firstname }} {{ user.lastname }}</p>
-          <p class="card-text"><strong>Mail: </strong>{{ user.email }}</p>
+          <p class="card-text"><strong>Type de compte :</strong>{{ user.role }}</p>
+          <p class="card-text"><strong>Nom complet : </strong>{{ user.firstname }} {{ user.lastname }}</p>
+          <p class="card-text"><strong>Mail : </strong>{{ user.email }}</p>
           <p class="card-text"><small class="text-muted">Inscrit depuis le {{ user.signup_date }}</small></p>
         </div>
       </div>

@@ -98,9 +98,13 @@ export default defineComponent({
 
     const createAccount = async () => {
       try {
-        const signup = await http.post<UserModel>('/auth/signup', {...formValues, signup_date: new Date()})
+        const signup = await http.post<UserModel>('/auth/signup', {
+          ...formValues,
+          role: "USER",
+          signup_date: new Date()
+        })
         if (signup.data) {
-          const login =await http.post('/auth/login', {...formValues})
+          const login = await http.post('/auth/login', {...formValues})
           Cookies.set('userToken', `${login.data.token}`, {expires: 1})
           Cookies.set('userId', `${login.data.userId}`, {expires: 1})
           await router.push({name: 'posts'})

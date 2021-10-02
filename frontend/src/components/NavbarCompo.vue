@@ -48,13 +48,13 @@ export default defineComponent({
       }
     }
 
-
     const router = useRouter()
 
 
     const disconnect = (): void => {
       Cookies.remove('userToken')
       Cookies.remove('userId')
+      Cookies.remove('userRole')
       router.push({name: 'home'})
     }
     return {disconnect, isLogged}

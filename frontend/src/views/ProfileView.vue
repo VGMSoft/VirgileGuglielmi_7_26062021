@@ -1,7 +1,7 @@
 <template>
   <Navbar>
     <li class="nav-item m-2">
-      <router-link to="/posts" class="text-decoration-none">
+      <router-link to="/posts" class="nav-link text-decoration-none">
         <font-awesome-icon :icon="['fas', 'envelope']"/>
         Posts
       </router-link>

@@ -56,7 +56,7 @@ export const login = async (req, res, next) => {
             {userId: user.id},
             `${PRIV_KEY}`,
             {expiresIn: '24h', algorithm: 'RS256'}
-          )
+          ), role: user.role
         })
       }
     }

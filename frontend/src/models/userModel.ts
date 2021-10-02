@@ -7,5 +7,5 @@ export interface UserModel {
   pseudo: string | undefined
   avatar_url: string | undefined
   signup_date: Date | undefined
-  pwd_set: Date | undefined
+  role: string | undefined
 }
