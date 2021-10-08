@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
     <div class="container-fluid">
       <router-link to="/" class="navbar-brand m-0 nav-link ">
-        <img src="../assets/logos/navbar-brand.png"
+        <img src="./../assets/logos/icon-left-font-slim.png"
              alt="Groupomania Logo">
       </router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -14,7 +14,7 @@
           <slot></slot>
           <li class="nav-item m-2" @click="disconnect" v-if="isLogged()">
             <router-link to="/" class="text-decoration-none nav-link ">
-              <font-awesome-icon :icon="['fas', 'power-off']"/>
+              <font-awesome-icon :icon="['fas', 'power-off']" class="text-primary"/>
               Déconnexion
             </router-link>
           </li>
@@ -50,10 +50,12 @@ export default defineComponent({
 
     const router = useRouter()
 
-
     const disconnect = (): void => {
+      Cookies.set('userToken', '')
       Cookies.remove('userToken')
+      Cookies.set('userId', '')
       Cookies.remove('userId')
+      Cookies.set('userRole', '')
       Cookies.remove('userRole')
       router.push({name: 'home'})
     }

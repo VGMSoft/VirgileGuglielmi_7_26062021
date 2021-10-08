@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-column align-items-center">
-    <img class="brand__spinner w-1"
+    <img class="spinner w-1"
          src="./../assets/logos/icon-alpha.png"
          alt="loading spinner">
     <p class="text-primary">Loading ...</p>
@@ -16,10 +16,9 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.brand {
-  &__spinner {
-    width: 25vw;
-    animation: rotate-vert-center 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
-  }
+
+.spinner {
+  width: 25%;
+  animation: rotate-vert-center 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
 }
 </style>

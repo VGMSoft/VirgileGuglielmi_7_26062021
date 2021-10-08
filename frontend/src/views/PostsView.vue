@@ -1,21 +1,9 @@
 <template>
   <Navbar>
-    <li class="nav-item">
-      <router-link to="/" class="nav-link">
-        <font-awesome-icon :icon="['fas', 'home']"/>
-        Get back home
-      </router-link>
-    </li>
-    <li class="nav-item">
+    <li class="nav-item m-2">
       <router-link to="/profile" class="nav-link">
         <font-awesome-icon :icon="['fas', 'user']"/>
         Profile
-      </router-link>
-    </li>
-    <li class="nav-item">
-      <router-link to="/posts/new" class="nav-link">
-        <font-awesome-icon :icon="['fas', 'pen']"/>
-        Create new post
       </router-link>
     </li>
   </Navbar>

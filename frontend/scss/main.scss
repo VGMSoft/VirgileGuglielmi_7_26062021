@@ -5,6 +5,7 @@ $theme-colors: (
         'primary': #D15059,
         "secondary": #6c757d,
         'dark': #091E43,
+        'dark--lighter': lighten(#091E43, 10%),
         'info': lighten(#091E43, 27.5%),
         'light': lighten(#AEAEB0, 27.5%)
 );

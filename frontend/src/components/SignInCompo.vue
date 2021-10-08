@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="connectAccount">
     <div class="mb-2">
-      <label for="Email" class="form-label mb-0">Email :</label>
+      <label for="Email" class="form-label fw-light mb-0">Email :</label>
       <input type="email" autocomplete="email" class="form-control"
              :class="{ 'is-valid': isValid, 'is-invalid': isInvalid }" id="Email" aria-describedby="emailHelp"
              v-model.trim="userVal.email.value">
@@ -9,18 +9,18 @@
     </div>
 
     <div class="mb-2">
-      <label for="Password" class="form-label mb-0">Mot de passe :</label>
+      <label for="Password" class="form-label fw-light mb-0">Mot de passe :</label>
       <input type="password" name="password" autocomplete="current-password" class="form-control"
              :class="{ 'is-valid': isValid, 'is-invalid': isInvalid }" id="Password"
              v-model.trim="userVal.password.value">
-      <div class="error text-red form-text">{{ userVal.password.errorMessage }}</div>
+      <div class="error text-primary form-text">{{ userVal.password.errorMessage }}</div>
     </div>
     <div class="d-flex flex-lg-row flex-column justify-content-center">
       <p class="text-center fw-light mb-0 p-1">Pas encore de compte ?</p>
-      <router-link to="/signup" class="nav-link text-red text-center fw-bolder mb-0 p-1">S'inscrire</router-link>
+      <router-link to="/signup" class="nav-link text-primary text-center fw-bolder mb-0 p-1">S'inscrire</router-link>
     </div>
     <div class="d-grid gap-2 mt-3">
-      <button type="submit" class="btn btn-outline-danger" :disabled="!formMeta.valid">
+      <button type="submit" class="btn btn-outline-primary rounded-pill" :disabled="!formMeta.valid">
         Connexion
       </button>
     </div>
@@ -81,6 +81,6 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+@import '../../scss/main';
 </style>

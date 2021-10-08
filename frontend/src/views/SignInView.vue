@@ -1,28 +1,23 @@
 <template>
-  <Navbar>
-<!--      <li class="nav-item m-2">-->
-<!--        <router-link to="/" class="text-decoration-none">-->
-<!--          <font-awesome-icon :icon="['fas', 'home']"/>-->
-<!--          Home-->
-<!--        </router-link>-->
-<!--      </li>-->
-  </Navbar>
-  <Card title="Se connecter">
-    <SignInCompo/>
-  </Card>
+  <HomeCompo>
+    <Card title="Se connecter">
+      <SignInCompo/>
+    </Card>
+  </HomeCompo>
 </template>
 
 <script>
 import {defineComponent} from 'vue'
 import SignInCompo from "@/components/SignInCompo.vue";
 import Card from "@/components/CardCompo";
-import Navbar from "@/components/NavbarCompo";
+import HomeCompo from "@/components/HomeCompo";
 
 export default defineComponent({
   name: "SignInView",
-  components: {Navbar, SignInCompo, Card},
+  components: {HomeCompo, SignInCompo, Card}
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../../scss/main';
 </style>
