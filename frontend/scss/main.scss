@@ -1,9 +1,23 @@
-//@import "themes/colors";
-//@import "utils/breakpoints";
-//@import "utils/mixins";
 @import "utils/keyframes";
-@import "themes/colors";
 
+//overriding theme-colors
+$theme-colors: (
+        'primary': #D15059,
+        "secondary": #6c757d,
+        'dark': #091E43,
+        'info': lighten(#091E43, 27.5%),
+        'light': lighten(#AEAEB0, 27.5%)
+);
+
+.after::after {
+  content: "";
+  display: block;
+  background-color: #D15059;
+  width: 100%;
+  height: 3px;
+  margin-top: 0.2em;
+  margin-bottom: 0.5em;
+}
 
 .profile-pic {
   width: 2.5rem;
