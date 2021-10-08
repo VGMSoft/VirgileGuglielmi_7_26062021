@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "dev": "nodemon ./server.ts",
-    "dbinit": "nodemon ./models/index.ts"
+    "dev": "nodemon ./server.ts"
   },
   "keywords": [],
   "author": "",
