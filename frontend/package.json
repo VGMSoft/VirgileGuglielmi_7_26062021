@@ -17,6 +17,7 @@
     "bootstrap-icons": "^1.5.0",
     "core-js": "^3.8.3",
     "js-cookie": "^3.0.1",
+    "normalize.css": "^8.0.1",
     "vee-validate": "^4.4.11",
     "vue": "^3.0.4",
     "vue-router": "^4.0.3",
