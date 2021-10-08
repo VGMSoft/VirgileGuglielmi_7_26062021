@@ -49,6 +49,7 @@ export const getOnePost = async (req: Request, res: Response, next) => {
 //OK
 export const editPost = async (req: Request, res: Response, next) => {
   try {
+    console.log(req.body)
     await Post.update({...req.body}, {where: {id: req.params.id}})
     res.status(201).json({message: 'Post updated successfully!'})
   } catch (error) {

@@ -1,6 +1,7 @@
 import {Request, Response} from 'express'
 import User from './../models/TS/userModel'
-import {decrypt, iv, key} from "../middleware/cryptoJS";
+import {decrypt, encrypt, iv, key} from "../middleware/cryptoJS";
+import {sanitize} from "../lib/sanitize";
 
 //OK
 export const getProfile = async (req, res: Response, next) => {
@@ -20,14 +21,14 @@ export const getProfile = async (req, res: Response, next) => {
 // OK
 export const editProfile = async (req, res: Response, next) => {
   const userId: string = req.user.dataValues.id
-  // const reqBody = req.file
-  // ? sanitize({
-  //   ...req.body,
-  //   avatarUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-  // })
-  // : sanitize({...req.body})
+  const reqBody = req.body.email
+  ? {
+    ...req.body,
+    email: encrypt(req.body.email, key, iv)
+  }
+  : {...req.body}
   try {
-    await User.update({...req.body}, {where: {id: userId}})
+    await User.update({...reqBody}, {where: {id: userId}})
     res.status(201).json({message: 'User updated successfully!'})
   } catch (error) {
     res.status(404).json({error})
