@@ -8,8 +8,8 @@
 
 <script>
 import {defineComponent} from 'vue'
-import SignInCompo from "@/components/SignInCompo.vue";
-import Card from "@/components/CardCompo";
+import SignInCompo from "@/components/auth/SignInCompo.vue";
+import Card from "@/components/utility/CardCompo";
 import HomeCompo from "@/components/HomeCompo";
 
 export default defineComponent({
@@ -19,5 +19,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '../../scss/main';
+@import '../../../scss/main';
 </style>

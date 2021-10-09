@@ -7,9 +7,9 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Card from "@/components/CardCompo.vue";
+import Card from "@/components/utility/CardCompo.vue";
 
-import SignUpCompo from "@/components/SignUpCompo.vue";
+import SignUpCompo from "@/components/auth/SignUpCompo.vue";
 
 export default defineComponent({
   name: 'CardView',

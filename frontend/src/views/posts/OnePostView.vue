@@ -44,8 +44,8 @@
           <template v-slot:edit>
             <input v-if="editState" type="text"
                    class="form-control border border-info"
-                   placeholder="New content text"
-                   v-model.trim="postContent"/>
+                   :placeholder="post.content"
+                   v-model.trim="postContent.content"/>
 
             <button v-if="editState" type="submit"
                     class="btn btn-outline-info rounded-pill m-2"
@@ -68,9 +68,9 @@
 
 <script lang="ts">
 
-import {defineComponent, onMounted, ref} from 'vue'
+import {defineComponent, onMounted, reactive, ref} from 'vue'
 import Navbar from "@/components/NavbarCompo.vue";
-import OnePost from "@/components/OnePostCompo.vue";
+import OnePost from "@/components/posts/OnePostCompo.vue";
 import {http} from "@/config/axios.config";
 import {PostModel} from "@/models/postModel";
 import {useRoute, useRouter} from "vue-router";
@@ -107,7 +107,7 @@ export default defineComponent({
 
     //POST
     const post = ref<PostModel | undefined>();
-    let postContent = ref("")
+    let postContent = reactive({content: ""})
 
     onMounted(async () => {
       await getPost(+id)
@@ -124,8 +124,7 @@ export default defineComponent({
 
     const editPost = async (postId: number) => {
       try {
-        const axiosResponse = await http.put(`/api/posts/${postId}`, {postContent})
-        postContent.value = axiosResponse.data
+        const axiosResponse = await http.put(`/api/posts/${postId}`, {...postContent})
         editState.value = false
         await router.push(`/posts`)
         return axiosResponse.data
@@ -150,5 +149,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '../../scss/main';
+@import '../../../scss/main';
 </style>

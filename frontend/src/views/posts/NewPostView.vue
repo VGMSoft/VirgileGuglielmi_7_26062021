@@ -4,7 +4,7 @@
 
 <script>
 import {defineComponent} from "vue"
-import NewPostCompo from "@/components/NewPostCompo";
+import NewPostCompo from "@/components/posts/NewPostCompo";
 
 export default defineComponent({
   name: "NewPostView",

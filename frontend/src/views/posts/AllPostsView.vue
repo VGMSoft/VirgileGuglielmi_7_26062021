@@ -8,19 +8,17 @@
     </li>
   </Navbar>
 
-  <PostCompo/>
-
-
+  <AllPostCompo/>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import PostCompo from "@/components/PostCompo.vue";
+import AllPostCompo from "@/components/posts/AllPostCompo.vue";
 import Navbar from "@/components/NavbarCompo.vue";
 
 export default defineComponent({
   name: 'PostsView',
-  components: {PostCompo, Navbar},
+  components: {AllPostCompo, Navbar},
   setup() {
     return {}
   }
@@ -28,5 +26,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '../../scss/main';
+@import '../../../scss/main';
 </style>
