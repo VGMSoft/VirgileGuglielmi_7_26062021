@@ -1,10 +1,10 @@
 <template>
   <div class=" mb-3">
-    <div class="card bg-light">
+    <div class="card bg-light shadow-sm">
       <div class="card-body">
         <form @submit.prevent="createPost()">
-          <label for="postContent" class="p-2">What's on your mind ?</label>
-          <textarea class="form-control" id="postContent" rows="1" col="50" v-model="postData.content"></textarea>
+          <label for="postContent" class="p-2 text-uppercase">Nouveau post</label>
+          <textarea class="form-control" id="postContent" rows="1" col="50" placeholder="" v-model="postData.content"></textarea>
           <button type="submit" class="btn btn-outline-primary rounded-pill my-2">
             Post !
           </button>
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from "vue"
+import {defineComponent, reactive, ref} from "vue"
 import {http} from "@/config/axios.config"
 import {PostModel} from "@/models/postModel"
 import {useRouter} from "vue-router";
@@ -23,15 +23,12 @@ import {useRouter} from "vue-router";
 export default defineComponent({
   name: "NewPostCompo",
 
-
   setup(props, {emit}) {
 
-    const router = useRouter()
-
-    const postData = {
+    const postData = reactive({
       content: "",
       date: new Date()
-    }
+    })
 
     let posts = ref<Array<PostModel> | null>(null);
 
@@ -48,7 +45,6 @@ export default defineComponent({
       try {
         const response = await http.post<PostModel>('/api/posts', postData)
         emit("onCreatePost", response.data)
-        await router.push({name: 'posts'})
         return response.data
       } catch (err) {
         return err

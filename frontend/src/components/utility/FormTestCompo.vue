@@ -19,7 +19,7 @@
 
 import {defineComponent} from "vue";
 import {ErrorMessage, Field, Form} from 'vee-validate';
-import Card from "@/components/CardCompo.vue";
+import Card from "@/components/utility/CardCompo.vue";
 import * as yup from 'yup';
 
 export default defineComponent({

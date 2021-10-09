@@ -13,17 +13,17 @@
         <ul class="navbar-nav">
           <slot></slot>
           <li class="nav-item m-2" @click="disconnect" v-if="isLogged()">
+            <router-link to="/signin" class="text-decoration-none nav-link ">
+              <font-awesome-icon :icon="['fas', 'user']" class=""/>
+              Changer de compte ?
+            </router-link>
+          </li>
+          <li class="nav-item m-2" @click="disconnect" v-if="isLogged()">
             <router-link to="/" class="text-decoration-none nav-link ">
               <font-awesome-icon :icon="['fas', 'power-off']" class="text-primary"/>
               Déconnexion
             </router-link>
           </li>
-<!--          <li class="nav-item m-2" v-else>-->
-<!--            <router-link to="/signin" class="text-decoration-none nav-link ">-->
-<!--              <font-awesome-icon :icon="['fas', 'power-off']"/>-->
-<!--              Connexion-->
-<!--            </router-link>-->
-<!--          </li>-->
         </ul>
       </div>
     </div>

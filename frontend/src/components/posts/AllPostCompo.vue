@@ -6,6 +6,7 @@
         <NewPostCompo @onCreatePost="getPosts()"/>
         <ul class="list-unstyled" v-if="posts">
           <li v-for="post in posts" :key="post">
+<!--            <slot></slot>-->
             <div class="card post shadow-sm mb-3" @click="showPost(post.id)">
               <div class="card-header d-flex flex-row justify-content-between bg-light bg-gradient p-1">
                 <div class="d-flex flex-row align-items-center">
@@ -17,10 +18,8 @@
               </div>
               <div class="card-body text-secondary border-bottom-0">
                 <p class="card-text ">{{ post.content }}</p>
-
               </div>
               <div class="card-footer d-flex justify-content-between border-top-0 py-0">{{ post.date }}
-
               </div>
             </div>
           </li>
@@ -38,12 +37,12 @@ import {defineComponent, onMounted, ref} from 'vue'
 import {http} from "@/config/axios.config"
 import {PostModel} from "@/models/postModel"
 import Cookies from "js-cookie";
-import NewPostCompo from "@/components/NewPostCompo.vue";
-import Spinner from "@/components/SpinnerCompo.vue";
+import NewPostCompo from "@/components/posts/NewPostCompo.vue";
+import Spinner from "@/components/utility/SpinnerCompo.vue";
 import {useRouter} from "vue-router";
 
 export default defineComponent({
-  name: "Post",
+  name: "AllPostCompo",
   components: {NewPostCompo, Spinner},
   setup() {
     const router = useRouter()
@@ -82,6 +81,7 @@ export default defineComponent({
       try {
         const axiosResponse = await http.get<Array<PostModel>>('/api/posts')
         posts.value = axiosResponse.data
+        return axiosResponse.data
       } catch (err) {
         return err
       }
@@ -90,7 +90,7 @@ export default defineComponent({
     const deletePost = async (id: number) => {
       try {
         const response = await http.delete<PostModel>(`/api/posts/${id}`)
-        getPosts()
+        await getPosts()
         return response.data
       } catch (err) {
         return err
@@ -103,5 +103,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '../../scss/main';
+@import '../../../scss/main';
 </style>

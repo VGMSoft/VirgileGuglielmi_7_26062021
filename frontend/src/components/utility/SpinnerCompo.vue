@@ -1,7 +1,7 @@
 <template>
-  <div class="d-flex flex-column align-items-center">
-    <img class="spinner w-1"
-         src="./../assets/logos/icon-alpha.png"
+  <div class="d-flex flex-column align-items-center p-5">
+    <img class="spinner w-1 "
+         src="../../assets/logos/icon-alpha.png"
          alt="loading spinner">
     <p class="text-primary">Loading ...</p>
   </div>
