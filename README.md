@@ -48,23 +48,27 @@
 ## Frontend
 
 * Setup
-```sh
+    ```sh
   # Run Vue3 & launch frontend server
   cd ./frontend/
   npm run serve
   ```
 
-## Backend
-
-
+## Database
 
 * Setup
-
-```sh
-  # Connect to your SQL local server
-  mysql> CREATE DATABASE IF NOT EXISTS groupomania;
-  mysql> USE groupomania;
+    ```sh
+  # 1 - Connect to your local SQL server
+  # 2 - Create groupomania database ( ⚠️️ may scratch existing data )
+  mysql> SOURCE ./backend/models/SQL/setup.sql;
+  # 3 - Run backend (cf: Backend section )
+  # 4 - Create admin profile
+  mysql> SOURCE ./backend/models/SQL/admin.sql;
   ```
+⚠️ setup.sql allows you to scratch and reinit Database
+## Backend
+
+* Setup
 
   ```sh
   # Run server.ts & launch backend server
@@ -105,7 +109,7 @@
 |<img alt="POST" src="https://img.shields.io/badge/-POST-gray"/>|/api/like|-|-|Renvoie la sauce avec l'ID fourni|
 |<img alt="PUT" src="https://img.shields.io/badge/-PUT-gray"/>|/api/like|-|-|Modifie le statut d'un like.|
 
-## Database
+
 
 ***
 

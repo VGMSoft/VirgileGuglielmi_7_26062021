@@ -45,22 +45,4 @@ export const initDB = async () => {
   await initLike()
 }
 
-//TODO: only once
-export const setAdmin = async () => {
-  try {
-    await User.create({
-      email: encrypt(`${process.env.ADMIN_EMAIL}`, key, iv),
-      password: await bcrypt.hash(`${process.env.ADMIN_PASS}`, 10),
-      firstname: "Admin",
-      lastname: "Groupomania",
-      pseudo: "Admin",
-      avatar_url: undefined,
-      signup_date: new Date(),
-      role: "ADMIN"
-    })
-  } catch (error) {
-    return error
-  }
-}
-
 

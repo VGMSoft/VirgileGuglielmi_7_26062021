@@ -1,1 +1,0 @@
- INSERT INTO `users` (`id`,`email`,`password`,`pseudo`,`firstname`,`lastname`,`role`) VALUES (DEFAULT,'OMTLG9UtQPQYLVc0Fe19egoKLWmE9IXp59JM7e6ZMxI=','$2b$10$a14xiLkJtz3uQjxTV6L3Ku3Nf.OcaV3If61Ks0fLLeP/UEtbH0IyG','RootUser','Admin' ,'Groupomania','ADMIN');
