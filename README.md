@@ -37,7 +37,7 @@
 * Implémenter un stockage de données sécurisé en utilisant SQL
 * Authentifier un utilisateur et maintenir sa session
 
-## Spécifications thechniques
+## Spécifications techniques
 
 * <a href="./docs/Groupomania_Specs_FR_DWJ_VF.pdf" target="_blank">guidelines.pdf</a>
 
@@ -62,7 +62,7 @@
   # 2 - Create groupomania database ( ⚠️️ may scratch existing data )
   mysql> SOURCE ./backend/models/SQL/setup.sql;
   # 3 - Run backend (cf: Backend section )
-  # 4 - Create admin profile
+  # 4 - Create admin profile (only run once)
   mysql> SOURCE ./backend/models/SQL/admin.sql;
   ```
 ⚠️ setup.sql allows you to scratch and reinit Database
