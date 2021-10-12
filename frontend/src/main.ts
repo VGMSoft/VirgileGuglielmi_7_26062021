@@ -11,6 +11,7 @@ import 'bootstrap/js/dist/collapse';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import {
+  faArrowCircleDown,
   faCog,
   faComment,
   faEllipsisH,
@@ -24,6 +25,7 @@ import {
   faPowerOff,
   faShare,
   faThumbsUp,
+  faTimes,
   faTrash,
   faUser
 } from '@fortawesome/free-solid-svg-icons'
@@ -46,7 +48,9 @@ library.add(
   faPlusCircle,
   faMinusCircle,
   faCog,
-  faLock)
+  faLock,
+  faTimes,
+  faArrowCircleDown)
 
 defineRule('min', min);
 defineRule('email', email);
