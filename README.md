@@ -108,11 +108,11 @@
 |<img alt="GET" src="https://img.shields.io/badge/-GET-gray"/>|/api/like|-|-|Récupère les likes d'un post et son auteur|
 |<img alt="POST" src="https://img.shields.io/badge/-POST-gray"/>|/api/like|-|-|Renvoie la sauce avec l'ID fourni|
 |<img alt="PUT" src="https://img.shields.io/badge/-PUT-gray"/>|/api/like|-|-|Modifie le statut d'un like.|
-
-
-
 ***
 
+## Whats's next
+
+ [Liste des évolutions prévues](https://github.com/VGMSoft/VirgileGuglielmi_7_26062021/projects/1)
 ## Author
 
 👤 **Virgile Guglielmi**
