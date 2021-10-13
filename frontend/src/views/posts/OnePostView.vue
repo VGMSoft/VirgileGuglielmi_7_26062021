@@ -30,7 +30,7 @@
                 <div class="dropdown-item mb-0 p-1" @click.stop="toggleEdit()">
                   <font-awesome-icon :icon="['fas', 'pen']" class="text-secondary me-1"/>
                   <span v-if="editState">Undo Edit</span>
-                  <span v-else>Edit Profile</span>
+                  <span v-else>Edit Post</span>
                 </div>
                 <div class="dropdown-item mb-0 p-1" @click="deletePost(post.id)">
                   <font-awesome-icon :icon="['fas', 'trash']" class="text-secondary me-1"/>
@@ -55,7 +55,7 @@
             </button>
             <button v-if="editState" type="submit"
                     class="btn btn-outline-info rounded-pill m-2" @click="toggleEdit()">
-              <font-awesome-icon :icon="['fas', 'times']" class="text-red"/>
+              <font-awesome-icon :icon="['fas', 'times']" class="text-primary"/>
               Exit
             </button>
 
@@ -122,8 +122,11 @@ export default defineComponent({
       }
     }
 
+
+
     const editPost = async (postId: number) => {
       try {
+        // postContent = {content: post.value.content}
         const axiosResponse = await http.put(`/api/posts/${postId}`, {...postContent})
         editState.value = false
         await router.push(`/posts`)
