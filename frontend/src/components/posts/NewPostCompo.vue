@@ -4,7 +4,8 @@
       <div class="card-body">
         <form @submit.prevent="createPost()">
           <label for="postContent" class="p-2 text-uppercase">Nouveau post</label>
-          <textarea class="form-control" id="postContent" rows="1" col="50" placeholder="" v-model="postData.content"></textarea>
+          <textarea class="form-control" id="postContent" rows="1" col="50" placeholder=""
+                    v-model="postData.content"></textarea>
           <button type="submit" class="btn btn-outline-primary rounded-pill my-2">
             Post !
           </button>
@@ -18,7 +19,6 @@
 import {defineComponent, reactive, ref} from "vue"
 import {http} from "@/config/axios.config"
 import {PostModel} from "@/models/postModel"
-import {useRouter} from "vue-router";
 
 export default defineComponent({
   name: "NewPostCompo",
@@ -45,6 +45,7 @@ export default defineComponent({
       try {
         const response = await http.post<PostModel>('/api/posts', postData)
         emit("onCreatePost", response.data)
+        postData.content = ""
         return response.data
       } catch (err) {
         return err
