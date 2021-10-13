@@ -3,14 +3,14 @@
     <div class="row">
       <div class="col-sm-12 col-xl-6 d-flex justify-content-center">
         <picture>
-          <source media="(min-width: 1200px)" srcset="./../assets/logos/icon-above-font.png" class="navPic">
-          <source media="(max-width: 1199px)" srcset="./../assets/logos/icon-left-font-slim.png" class="navPic">
+          <source media="(min-width: 1200px)" srcset="./../assets/logos/logo-lg.png" class="navPic">
+          <source media="(min-width: 768px)" srcset="./../assets/logos/logo-md.png" class="navPic">
+          <source media="(min-width: 375px)" srcset="./../assets/logos/logo-sm.png" class="navPic">
           <img src="" alt="Groupomania logo">
         </picture>
-<!--        <div class="text-primary">Groupomania</div>-->
       </div>
 
-      <div class="col-sm-12 col-xl-6 d-flex flex-column justify-content-evenly bg-primary">
+      <div class="col-sm-12 col-xl-6 d-flex flex-column justify-content-evenly bg-primary" style="height:100vh;">
         <slot></slot>
       </div>
     </div>
