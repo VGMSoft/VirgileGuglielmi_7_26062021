@@ -104,4 +104,9 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import '../../../scss/main';
+.post:hover{
+  opacity: 0.6;
+  border: 1px solid lighten(#D15059, 20%);
+
+}
 </style>
