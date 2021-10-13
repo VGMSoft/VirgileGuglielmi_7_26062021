@@ -7,10 +7,8 @@ import passport from 'passport'
 const profileRoute: Router = express.Router()
 
 profileRoute.get('/:id', passport.authenticate('jwt', {session: false}), userCtrl.getProfile)
-profileRoute.put('/:id', passport.authenticate('jwt', {session: false}), userCtrl.editProfile)
+profileRoute.put('/:id', passport.authenticate('jwt', {session: false}), multer, userCtrl.editProfile)
 profileRoute.delete('/:id', passport.authenticate('jwt', {session: false}), userCtrl.deleteProfile)
-profileRoute.post('/avatar', passport.authenticate('jwt', {session: false}), userCtrl.addAvatar)
-profileRoute.put('/avatar', passport.authenticate('jwt', {session: false}), userCtrl.editAvatar)
 
 export default profileRoute
 

@@ -1,4 +1,4 @@
-import {Request, Response} from 'express'
+import {Response} from 'express'
 import User from './../models/TS/userModel'
 import {decrypt, encrypt, iv, key} from "../middleware/cryptoJS";
 
@@ -31,11 +31,20 @@ export const editProfile = async (req, res: Response, next) => {
         email: encrypt(req.body.email, key, iv)
       }
       : {...req.body}
+
+    // const profilePic = req.file
+    //   ? {
+    //     ...req.body,
+    //     avatar_url: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    //   }
+    //   : {
+    //     ...req.body
+    //   }
+
     try {
-      await User.update({...reqBody}, {where: {id: userId}})
+      await User.update({...reqBody, id: userId}, {where: {id: userId}})
       res.status(201).json({message: 'User updated successfully!'})
-    }
-    catch (error) {
+    } catch (error) {
       res.status(404).json({error})
     }
   }
@@ -52,7 +61,6 @@ export const deleteProfile = async (req, res: Response, next) => {
   }
 }
 
-//TODO v
 export const addAvatar = async (req, res: Response, next) => {
   const userId: string = req.user.dataValues.id
   const profilePic = req.file
@@ -63,7 +71,7 @@ export const addAvatar = async (req, res: Response, next) => {
     : {
       ...req.body
     }
-    console.log(req.file)
+
   try {
     console.log(profilePic, req.file)
     await User.update({...profilePic, id: userId}, {where: {id: userId}})
