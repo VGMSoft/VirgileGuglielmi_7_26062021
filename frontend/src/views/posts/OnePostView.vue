@@ -44,8 +44,7 @@
           <template v-slot:edit>
             <input v-if="editState" type="text"
                    class="form-control border border-info"
-                   :placeholder="post.content"
-                   v-model.trim="postContent.content"/>
+                   v-model.trim="post.content"/>
 
             <button v-if="editState" type="submit"
                     class="btn btn-outline-info rounded-pill m-2"
@@ -68,7 +67,7 @@
 
 <script lang="ts">
 
-import {defineComponent, onMounted, reactive, ref} from 'vue'
+import {defineComponent, onMounted, ref} from 'vue'
 import Navbar from "@/components/NavbarCompo.vue";
 import OnePost from "@/components/posts/OnePostCompo.vue";
 import {http} from "@/config/axios.config";
@@ -81,7 +80,6 @@ export default defineComponent({
   name: "OnePostView",
   components: {Navbar, OnePost},
   setup() {
-
     // check user identity
     const userId = Cookies.get('userId');
     const isAdmin = () => {
@@ -90,7 +88,7 @@ export default defineComponent({
 
     // edit mode initial state
     let editState = ref(false);
-
+    // edit mode toggle
     const toggleEdit = () => {
       if (editState.value === false) {
         editState.value = true
@@ -105,9 +103,9 @@ export default defineComponent({
     const router = useRouter()
     const id = route.params.id
 
-    //POST
-    const post = ref<PostModel | undefined>();
-    let postContent = reactive({content: ""})
+    //Models
+    let post = ref<PostModel | undefined>();
+
 
     onMounted(async () => {
       await getPost(+id)
@@ -122,12 +120,9 @@ export default defineComponent({
       }
     }
 
-
-
     const editPost = async (postId: number) => {
       try {
-        // postContent = {content: post.value.content}
-        const axiosResponse = await http.put(`/api/posts/${postId}`, {...postContent})
+        const axiosResponse = await http.put(`/api/posts/${postId}`, post.value)
         editState.value = false
         await router.push(`/posts`)
         return axiosResponse.data
@@ -146,7 +141,7 @@ export default defineComponent({
       }
     }
 
-    return {post, postContent, editState, userId, isAdmin, getPost, editPost, deletePost, toggleEdit}
+    return {post, editState, userId, isAdmin, getPost, editPost, deletePost, toggleEdit}
   }
 })
 </script>
