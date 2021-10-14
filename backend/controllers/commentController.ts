@@ -5,9 +5,8 @@ import Post from "../models/TS/postModel";
 
 // OK
 export const createComment = async (req: Request, res: Response, next) => {
-  const postId = req.params.postId
   try {
-    await Comment.create({...req.body, postId})
+    await Comment.create({...req.body})
     res.status(201).json({message: 'Comment saved successfully!'})
   } catch (error) {
     res.status(400).json({error})

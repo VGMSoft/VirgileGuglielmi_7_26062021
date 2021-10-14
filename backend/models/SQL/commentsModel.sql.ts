@@ -11,6 +11,8 @@ export const initComment = () => {
       autoIncrement: true,
       primaryKey: true,
     },
+    userId: DataTypes.INTEGER.UNSIGNED,
+    postId: DataTypes.INTEGER.UNSIGNED,
     content: DataTypes.TEXT,
     date: DataTypes.DATE
   }, {sequelize, modelName: 'comments'})
@@ -18,6 +20,9 @@ export const initComment = () => {
   Comment.belongsTo(Post)
   Post.hasMany(Comment)
 
-  Comment.belongsTo(User, {foreignKey: 'postId'})
-  User.hasMany(Comment, {foreignKey: 'postId'})
+  Comment.belongsTo(User, {foreignKey: 'userId'})
+  User.hasMany(Comment, {foreignKey: 'userId'})
+
+  Comment.belongsTo(Post, {foreignKey: 'postId'})
+  Post.hasMany(Comment, {foreignKey: 'postId'})
 }
