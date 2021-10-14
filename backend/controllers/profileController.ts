@@ -21,25 +21,23 @@ export const getProfile = async (req, res: Response, next) => {
 export const editProfile = async (req, res: Response, next) => {
   const userId: string = req.user.dataValues.id
 
-  let email = await User.findOne({where: {email: encrypt(req.body.email, key, iv)}})
-  if (email) {
-    res.status(405).json({message: 'This email is already used !'})
-  } else {
+  // let email = await User.findOne({where: {email: encrypt(req.body.email, key, iv)}})
+  // if (email) {
+  //   res.status(405).json({message: 'This email is already used !'})
+  // } else {
     const reqBody = req.body.email
       ? {
         ...req.body,
         email: encrypt(req.body.email, key, iv)
       }
       : {...req.body}
-
-    // const profilePic = req.file
-    //   ? {
-    //     ...req.body,
-    //     avatar_url: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    //   }
-    //   : {
-    //     ...req.body
-    //   }
+    console.log(req)
+//     const reqBody = req.file
+//       ? {
+//         ...req.body,
+//         avatar_url: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+//       }
+//       : {...req.body}
 
     try {
       await User.update({...reqBody, id: userId}, {where: {id: userId}})
@@ -47,7 +45,7 @@ export const editProfile = async (req, res: Response, next) => {
     } catch (error) {
       res.status(404).json({error})
     }
-  }
+  // }
 }
 
 export const deleteProfile = async (req, res: Response, next) => {
