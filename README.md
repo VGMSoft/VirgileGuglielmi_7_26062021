@@ -65,7 +65,7 @@
   # 4 - Create admin profile (only run once)
   mysql> SOURCE backend/models/SQL/admin.sql;
   ```
-⚠️ setup.sql allows you to scratch and reinit Database
+⚠️ <span style="color: crimson;font-weight: bold;">BEWARE :</span> setup.sql scratch and reinitialize database !
 ## Backend
 
 * Setup
@@ -89,19 +89,17 @@
 |<img alt="POST" src="https://img.shields.io/badge/-POST-blue"/>|/api/auth/login|{ email: string, password: string }|{ userId: string, token: string }|Vérifie les informations d'identification de l'utilisateur, en renvoyant l'identifiant userID depuis la base de données et un jeton Web JSON signé( contenant également l'identifiant userID )
 |**<span style="color: gold;">Profile</span>**| | | | |
 |<img alt="GET" src="https://img.shields.io/badge/-GET-blue"/>|api/profile|_|Objet de profil|Renvoie l'objet représentant les données de l'utilisateur|
-|<img alt="PUT" src="https://img.shields.io/badge/-PUT-blue"/>|api/profile|_|Objet de profil|Modifie les données du profil en base de données|
-|<img alt="DELETE" src="https://img.shields.io/badge/-DELETE-blue"/>|api/profile|_|{ message: String }|Supprime le compte utilisateur ainsi que ses données, ses posts et ses commentaires.|
-|<img alt="POST" src="https://img.shields.io/badge/-POST-gray"/>|api/profile/avatar| { image: File }|{ message: String }|Upload une photo de profil.|
-|<img alt="PUT" src="https://img.shields.io/badge/-PUT-gray"/>|api/profile/avatar|{ image: File }|{ message: String }|Update la photo de profil.|
+|<img alt="PUT" src="https://img.shields.io/badge/-PUT-blue"/>|api/profile|_|Objet de profil|Modifie les données du profil en base de données. Permet d'ajouter un avatar.|
+|<img alt="DELETE" src="https://img.shields.io/badge/-DELETE-blue"/>|api/profile|_|{ message: String }|Supprime le compte utilisateur ainsi que ses données, ses posts et ses commentaires.|||
 |**<span style="color: gold;">Posts</span>**| | | | |
-|<img alt="POST" src="https://img.shields.io/badge/-POST-blue"/>|/api/post|_|Tableau des posts|Créé une publication et l'enregistre dans la base de données|
-|<img alt="GET" src="https://img.shields.io/badge/-GET-blue"/>|/api/post|_|Post unique|Renvoie le tableau de tous les posts dans la base de données|
-|<img alt="GET" src="https://img.shields.io/badge/-GET-blue"/>|/api/post/:id|{ post: String, image: File }|{ message: String }|Renvoie le post avec l'ID fourni|
-|<img alt="PUT" src="https://img.shields.io/badge/-PUT-blue"/>|/api/post/:id|-|-|Modifie le post|
-|<img alt="DELETE" src="https://img.shields.io/badge/-DELETE-blue"/>|/api/post/:id|-|-|Supprime le post|
+|<img alt="POST" src="https://img.shields.io/badge/-POST-blue"/>|/api/post|_|Tableau des posts|Créé une publication et l'enregistre dans la base de données.|
+|<img alt="GET" src="https://img.shields.io/badge/-GET-blue"/>|/api/post|_|Post unique|Renvoie le tableau de tous les posts dans la base de données.|
+|<img alt="GET" src="https://img.shields.io/badge/-GET-blue"/>|/api/post/:id|{ post: String, image: File }|{ message: String }|Renvoie le post avec l'ID fourni.|
+|<img alt="PUT" src="https://img.shields.io/badge/-PUT-blue"/>|/api/post/:id|-|-|Modifie le post.|
+|<img alt="DELETE" src="https://img.shields.io/badge/-DELETE-blue"/>|/api/post/:id|-|-|Supprime le post.|
 |**<span style="color: gold;">Comments</span>**| | | | |
-|<img alt="POST" src="https://img.shields.io/badge/-POST-gray"/>|api/posts/id/comments|-|-|Créé une commentaire pour une publication donnée.|
-|<img alt="GET" src="https://img.shields.io/badge/-GET-gray"/>|api/posts/id/comments|-|-|Renvoie tous les commentaires pour une publication donnée.|
+|<img alt="POST" src="https://img.shields.io/badge/-POST-blue"/>|api/posts/id/comments|-|-|Créé une commentaire pour une publication donnée.|
+|<img alt="GET" src="https://img.shields.io/badge/-GET-blue"/>|api/posts/id/comments|-|-|Renvoie tous les commentaires pour une publication donnée.|
 |<img alt="GET" src="https://img.shields.io/badge/-GET-gray"/>|api/posts/id/comments/id|-|-|Renvoie le commentaires correspondant à l' ID fourni pour une publication donnée.|
 |<img alt="PUT" src="https://img.shields.io/badge/-PUT-gray"/>|api/posts/id/comments/id|-|-|Modifie le commentaires correspondant à l' ID fourni pour une publication donnée.|
 |**<span style="color: gold;">Likes</span>**| | | | |
@@ -110,7 +108,7 @@
 |<img alt="PUT" src="https://img.shields.io/badge/-PUT-gray"/>|/api/like|-|-|Modifie le statut d'un like.|
 ***
 
-## Whats's next
+## What's next
 
  [Liste des évolutions prévues](https://github.com/VGMSoft/VirgileGuglielmi_7_26062021/projects/1)
 ## Author
