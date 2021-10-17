@@ -6,7 +6,6 @@
         <NewPostCompo @onCreatePost="getPosts()"/>
         <ul class="list-unstyled" v-if="posts">
           <li v-for="post in posts" :key="post">
-<!--            <slot></slot>-->
             <div class="card post shadow-sm mb-3" @click="showPost(post.id)">
               <div class="card-header d-flex flex-row justify-content-between bg-light bg-gradient p-1">
                 <div class="d-flex flex-row align-items-center">
@@ -49,7 +48,7 @@ export default defineComponent({
 
     // edit mode initial state
     let edit = ref(false)
-
+    // edit mode toggle
     const toggleEdit = () => {
       console.log(edit.value)
       if (edit.value === false) {
@@ -97,14 +96,19 @@ export default defineComponent({
       }
     }
 
-    return {userId, isAdmin, posts, edit, showPost, getPosts, toggleEdit, deletePost}
+    return {
+      userId, isAdmin, posts,
+      edit, toggleEdit,
+      showPost, getPosts, deletePost
+    }
   }
 })
 </script>
 
 <style lang="scss" scoped>
 @import '../../../scss/main';
-.post:hover{
+
+.post:hover {
   opacity: 0.6;
   border: 1px solid lighten(#D15059, 20%);
 
