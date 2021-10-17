@@ -1,14 +1,16 @@
 <template>
   <div class=" mb-3">
-    <div class="card bg-light shadow-sm">
+    <div class="card bg-light">
       <div class="card-body">
-        <form @submit.prevent="createPost()">
-          <label for="postContent" class="p-2 text-uppercase">Nouveau post</label>
-          <textarea class="form-control" id="postContent" rows="1" col="50" placeholder=""
-                    v-model="postData.content"></textarea>
-          <button type="submit" class="btn btn-outline-primary rounded-pill my-2">
-            Post !
+        <form @submit.prevent="createComment()" >
+          <label for="commentContent" class="p-2 text-uppercase">nouveau comment</label>
+          <div class="d-flex flex-row">
+          <textarea class="form-control" id="commentContent" rows="1" col="50" placeholder="New Comment"
+                    v-model="commentData.content"></textarea>
+          <button type="submit" class="btn btn-outline-primary rounded-pill ms-2">
+            Comment
           </button>
+          </div>
         </form>
       </div>
     </div>
@@ -16,43 +18,49 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, ref} from "vue"
+import {defineComponent, inject, reactive, Ref, ref} from "vue"
 import {http} from "@/config/axios.config"
-import {PostModel} from "@/models/postModel"
+import {CommentModel} from "@/models/commentModel";
+import Cookies from "js-cookie";
 
 export default defineComponent({
-  name: "NewPostCompo",
+  name: "NewCommentCompo",
 
   setup(props, {emit}) {
+    const userId = Cookies.get('userId')
+    const postId = inject<Ref<number>>('postId');
 
-    const postData = reactive({
+    //Models
+    let comments = ref<Array<CommentModel> | undefined>();
+
+    const commentData = reactive({
+      userId: +userId,
+      postId: +postId,
       content: "",
       date: new Date()
     })
 
-    let posts = ref<Array<PostModel> | null>(null);
-
-    const getPosts = async () => {
+    const getComments = async () => {
       try {
-        const axiosResponse = await http.get<Array<PostModel>>('/api/posts')
-        posts.value = axiosResponse.data
+        const axiosResponse = await http.get<Array<CommentModel>>(`/api/posts/${postId}/comments`)
+        comments.value = axiosResponse.data
       } catch (err) {
         return err
       }
     }
 
-    const createPost = async () => {
+    const createComment = async () => {
       try {
-        const response = await http.post<PostModel>('/api/posts', postData)
-        emit("onCreatePost", response.data)
-        postData.content = ""
+        const response = await http.post<CommentModel>(`/api/posts/${postId}/comments`, commentData)
+        emit("onCreateComment", response.data)
+        commentData.content = ""
         return response.data
       } catch (err) {
         return err
       }
     }
 
-    return {postData, getPosts, createPost}
+    return {commentData, getComments, createComment}
   }
 
 })
