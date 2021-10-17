@@ -18,10 +18,14 @@
       <div class="col">
         <h1 class="text-dark fw-bold text-uppercase after mt-2">post en détail</h1>
         <!--OnePostComponent-->
-        <OnePost v-if="post" :pseudo="post.user.pseudo" :content="post.content" :date="post.date">
+        <OnePost v-if="post"
+                 :pseudo="post.user.pseudo"
+                 :content="post.content"
+                 :date="post.date">
           <!--dropdown-->
           <template v-slot:dropdown>
-            <div v-if="post.user.id === +userId || isAdmin()" class="dropdown">
+            <div v-if="post.user.id === +userId || isAdmin()"
+                 class="dropdown">
               <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <font-awesome-icon :icon="['fas', 'ellipsis-h']" class="me-1"/>
@@ -39,7 +43,6 @@
               </div>
             </div>
           </template>
-
           <!--edit-->
           <template v-slot:edit>
             <input v-if="editState" type="text"
@@ -53,13 +56,17 @@
               Edit
             </button>
             <button v-if="editState" type="submit"
-                    class="btn btn-outline-info rounded-pill m-2" @click="toggleEdit()">
+                    class="btn btn-outline-info rounded-pill m-2"
+                    @click="toggleEdit()">
               <font-awesome-icon :icon="['fas', 'times']" class="text-primary"/>
               Exit
             </button>
-
+          </template>
+          <template v-slot:comments>
+            <AllCommentsCompo/>
           </template>
         </OnePost>
+
       </div>
     </div>
   </main>
@@ -67,19 +74,20 @@
 
 <script lang="ts">
 
-import {defineComponent, onMounted, ref} from 'vue'
+import {defineComponent, onMounted, provide, ref} from 'vue'
 import Navbar from "@/components/NavbarCompo.vue";
 import OnePost from "@/components/posts/OnePostCompo.vue";
 import {http} from "@/config/axios.config";
 import {PostModel} from "@/models/postModel";
 import {useRoute, useRouter} from "vue-router";
 import Cookies from "js-cookie";
+import AllCommentsCompo from "@/components/comments/AllCommentsCompo.vue";
 
 
 export default defineComponent({
   name: "OnePostView",
-  components: {Navbar, OnePost},
-  setup() {
+  components: {Navbar, OnePost, AllCommentsCompo},
+  setup(props, {emit}) {
     // check user identity
     const userId = Cookies.get('userId');
     const isAdmin = () => {
@@ -102,6 +110,7 @@ export default defineComponent({
     const route = useRoute()
     const router = useRouter()
     const id = route.params.id
+    provide('postId', id);
 
     //Models
     let post = ref<PostModel | undefined>();
@@ -114,6 +123,7 @@ export default defineComponent({
     const getPost = async (postId: number) => {
       try {
         const axiosResponse = await http.get<PostModel>(`/api/posts/${postId}`)
+        emit("onGetPost", postId)
         post.value = axiosResponse.data
       } catch (err) {
         return err
@@ -141,7 +151,10 @@ export default defineComponent({
       }
     }
 
-    return {post, editState, userId, isAdmin, getPost, editPost, deletePost, toggleEdit}
+    return {
+      post, userId, editState, isAdmin,
+      getPost, editPost, deletePost, toggleEdit
+    }
   }
 })
 </script>
