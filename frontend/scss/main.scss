@@ -2,7 +2,9 @@
 
 //overriding theme-colors
 $theme-colors: (
-        'primary': #D15059,
+        //'primary': #D15059,
+        //modificated for WCAG 4.5:1 min contrast
+        'primary':#C4434C,
         "secondary": #6c757d,
         'dark': #091E43,
         'dark--lighter': lighten(#091E43, 10%),
