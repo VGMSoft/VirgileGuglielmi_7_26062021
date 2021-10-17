@@ -1,6 +1,7 @@
 import {Request, Response} from 'express'
 import Comment from '../models/TS/commentModel'
 import Post from "../models/TS/postModel";
+import User from "../models/TS/userModel";
 
 
 // OK
@@ -14,15 +15,23 @@ export const createComment = async (req: Request, res: Response, next) => {
 }
 
 //TODO v
-export const getAllComments = async (req: Request, res: Response, next) => {
-  const postId = req.params.postId
+export const getAllPostComments = async (req, res: Response, next) => {
+  // const postId = req.params.postId
+  const postId = 6
+
   try {
-    const comments = await Comment.findAll({where: {id: postId},
-      include: [{
-        model: Post,
-        required: true
-      }]
-    })
+    const comments = await Comment.findAll(
+      {
+        where: {postId: postId},
+        include: [{
+          model: Post,
+          required: true
+        }, {
+          model: User,
+          required: true
+        }]
+      }
+    )
     res.status(200).json(comments)
   } catch (error) {
     res.status(404).json({error})
@@ -31,6 +40,7 @@ export const getAllComments = async (req: Request, res: Response, next) => {
 //TODO v
 export const getOneComment = async (req: Request, res: Response, next) => {
   const postId = req.params.postId
+
   try {
     const comment = await Comment.findOne({
       where: {id: postId}, include: [{
