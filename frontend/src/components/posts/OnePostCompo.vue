@@ -10,8 +10,9 @@
       <slot name="dropdown"></slot>
     </div>
     <div class="card-body text-secondary border-bottom-0">
-      <p class="card-text ">{{ content }}</p>
+      <p class="card-text">{{ content }}</p>
       <slot name="edit"></slot>
+      <slot name="comments"></slot>
     </div>
     <div class="card-footer d-flex justify-content-between border-top-0 py-0">
       Posté le {{ date }}
@@ -43,4 +44,14 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import '../../../scss/main';
+
+.card-text::after{
+  content: "";
+  display: block;
+  background-color: #6c757d;
+  width: 100%;
+  height: 1px;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
 </style>
