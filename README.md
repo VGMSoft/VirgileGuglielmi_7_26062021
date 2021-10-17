@@ -60,10 +60,10 @@
     ```sh
   # 1 - Connect to your local SQL server
   # 2 - Create groupomania database ( ⚠️️ may scratch existing data )
-  mysql> SOURCE ./backend/models/SQL/setup.sql;
+  mysql> SOURCE backend/models/SQL/setup.sql;
   # 3 - Run backend (cf: Backend section )
   # 4 - Create admin profile (only run once)
-  mysql> SOURCE ./backend/models/SQL/admin.sql;
+  mysql> SOURCE backend/models/SQL/admin.sql;
   ```
 ⚠️ setup.sql allows you to scratch and reinit Database
 ## Backend
