@@ -3,12 +3,14 @@
     <div class="card bg-light shadow-sm">
       <div class="card-body">
         <form @submit.prevent="createPost()">
-          <label for="postContent" class="p-2 text-uppercase">Nouveau post</label>
-          <textarea class="form-control" id="postContent" rows="1" col="50" placeholder=""
+          <label for="postContent" class="p-2 text-uppercase">nouveau post</label>
+          <div class="d-flex flex-row">
+          <textarea class="form-control" id="postContent" placeholder=""
                     v-model="postData.content"></textarea>
-          <button type="submit" class="btn btn-outline-primary rounded-pill my-2">
-            Post !
+          <button type="submit" class="btn btn-outline-primary rounded-pill ms-2">
+            Post
           </button>
+          </div>
         </form>
       </div>
     </div>
