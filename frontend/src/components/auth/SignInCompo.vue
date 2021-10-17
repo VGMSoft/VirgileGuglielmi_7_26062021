@@ -68,7 +68,6 @@ export default defineComponent({
           Cookies.set('userRole', `${response.data.role}`, {expires: 1})
           await router.push({name: 'posts'})
         }
-        console.log(response.data)
         return response.data
       } catch (err) {
         return err
