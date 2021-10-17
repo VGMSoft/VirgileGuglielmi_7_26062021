@@ -1,6 +1,7 @@
 import sequelize from "../db.connect"
 import {DataTypes} from "sequelize"
 import User from "./../TS/userModel"
+import Post from "../TS/postModel";
 
 export const initUser = () => {
   User.init({

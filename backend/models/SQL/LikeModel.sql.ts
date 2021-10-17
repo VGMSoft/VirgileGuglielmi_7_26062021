@@ -10,9 +10,13 @@ export const initLike = () => {
     state: DataTypes.BOOLEAN
   }, {sequelize, modelName: 'likes'})
 
-  Like.belongsTo(Post)
-  Post.hasMany(Like)
+  Post.hasMany(Like, {foreignKey: 'postId',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'})
+  Like.belongsTo(Post, {foreignKey: 'postId'})
 
-  Like.belongsTo(User, {foreignKey: 'postId'})
-  User.hasMany(Like, {foreignKey: 'postId'})
+  User.hasMany(Like, {foreignKey: 'userId',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'})
+  Like.belongsTo(User, {foreignKey: 'userId'})
 }

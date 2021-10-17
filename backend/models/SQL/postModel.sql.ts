@@ -13,9 +13,13 @@ export const initPost = () => {
     content: DataTypes.TEXT,
     date: DataTypes.DATE
   }, {sequelize, modelName: 'posts'})
-0
+
   //Association
-  User.hasMany(Post, {foreignKey: 'userId'})
+  User.hasMany(Post, {
+    foreignKey: 'userId',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+  })
   Post.belongsTo(User, {foreignKey: 'userId'})
 
 }
