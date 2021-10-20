@@ -1,13 +1,13 @@
 import {createRouter, createWebHistory, RouteLocationNormalized} from 'vue-router'
 
 import HomeView from '@/views/HomeView.vue'
-import SignUpView from '@/views/SignUpView.vue'
-import SignInView from '@/views/SignInView.vue'
-import PostsView from '@/views/PostsView.vue'
-import NewPostView from "@/views/NewPostView.vue"
+import SignUpView from '@/views/auth/SignUpView.vue'
+import SignInView from '@/views/auth/SignInView.vue'
+import AllPostsView from '@/views/posts/AllPostsView.vue'
+import NewPostView from "@/views/posts/NewPostView.vue"
 import ProfileView from '@/views/ProfileView.vue'
 import NotFoundView from "@/views/NotFoundView.vue"
-import CardView from "@/views/CardView.vue"
+import OnePostView from "@/views/posts/OnePostView.vue";
 import Cookies from "js-cookie";
 
 export const router = createRouter({
@@ -33,7 +33,6 @@ export const router = createRouter({
       path: '/signin',
       name: 'signin',
       component: SignInView,
-      // redirect: '/posts',
       meta: {
         title: 'Signin'
       }
@@ -51,7 +50,7 @@ export const router = createRouter({
     {
       path: '/posts',
       name: 'posts',
-      component: PostsView,
+      component: AllPostsView,
       meta: {
         title: 'Posts'
       }
@@ -63,6 +62,13 @@ export const router = createRouter({
         title: 'New Post'
       }
     }, {
+      path: '/posts/:id',
+      name: 'one posts',
+      component: OnePostView,
+      meta: {
+        title: 'Posts'
+      }
+    }, {
       path: '/:pathMatch(.*)',
       name: 'NotFound',
       component: NotFoundView,
@@ -70,15 +76,7 @@ export const router = createRouter({
         title: ' 404 - Not Found'
       },
       props: true
-    },
-    {
-      path: '/card',
-      name: 'card',
-      component: CardView,
-      meta: {
-        title: 'test'
-      }
-    },
+    }
   ]
 })
 
