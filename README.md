@@ -1,7 +1,7 @@
 <h1 style="text-align: center;"
  >Welcome to Groupomania 👋</h1>
 
-<img alt="Logo: groupomania" src="frontend/groupomania/src/assets/logos/icon-left-font-monochrome-black-slim.png" />
+<img alt="Logo: groupomania" src="./frontend/src/assets/logos/logo-md.png" />
 
 > Réseau social d'entreprise
 
