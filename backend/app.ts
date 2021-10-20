@@ -48,12 +48,13 @@ import profileRoute from "./routes/profileRoute"
 import postRoute from "./routes/postRoute"
 import commentRoute from "./routes/commentRoute"
 import likeRoute from "./routes/likeRoute"
+import {getAllPostComments} from "./controllers/commentController";
 
 //Defining Routes-------------------------------------------------------------------------------------------------------
 app.use('/auth', authRoute)
 app.use('/api/profile', profileRoute)
+app.use('/api/posts/:id/comments', commentRoute)
 app.use('/api/posts', postRoute)
-app.use('/api/posts/:postId/comments', commentRoute)
 app.use("/api/posts/:postId/like", likeRoute)
 
 //Serving images--------------------------------------------------------------------------------------------------------

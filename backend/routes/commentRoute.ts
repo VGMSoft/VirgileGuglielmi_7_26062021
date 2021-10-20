@@ -2,7 +2,7 @@ import * as express from 'express'
 import {Router} from 'express'
 import * as commentCtrl from '../controllers/commentController'
 const passport = require('passport')
-const commentRoute: Router = express.Router()
+const commentRoute: Router = express.Router({mergeParams:true})
 
 
 commentRoute.post('/', passport.authenticate('jwt', {session: false}), commentCtrl.createComment)

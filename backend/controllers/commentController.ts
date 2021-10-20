@@ -16,9 +16,7 @@ export const createComment = async (req: Request, res: Response, next) => {
 
 //TODO v
 export const getAllPostComments = async (req, res: Response, next) => {
-  // const postId = req.params.postId
-  const postId = 6
-
+  const postId = req.params.id
   try {
     const comments = await Comment.findAll(
       {
@@ -40,6 +38,7 @@ export const getAllPostComments = async (req, res: Response, next) => {
 //TODO v
 export const getOneComment = async (req: Request, res: Response, next) => {
   const postId = req.params.postId
+  console.log(req.params.postId)
 
   try {
     const comment = await Comment.findOne({
