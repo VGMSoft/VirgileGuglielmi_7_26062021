@@ -3,7 +3,7 @@
     <div class="mb-2">
       <label for="Email" class="form-label fw-light mb-0">Email :</label>
       <input type="email" autocomplete="email" class="form-control"
-             :class="{ 'is-valid': !userVal.email.errorMessage && userVal.email.value, 'is-invalid': userVal.email.errorMessage }" id="Email" aria-describedby="emailHelp"
+             :class="{ 'is-valid': !userVal.email.errorMessage && userVal.email.value, 'is-invalid': userVal.email.errorMessage }" id="Email"
              v-model.trim="userVal.email.value">
       <div class="error text-red form-text">{{ userVal.email.errorMessage }}</div>
     </div>

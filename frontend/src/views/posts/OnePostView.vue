@@ -13,6 +13,7 @@
       </router-link>
     </li>
   </Navbar>
+
   <main class="container">
     <div class="row">
       <div class="col">
@@ -27,7 +28,8 @@
             <div v-if="post.user.id === +userId || isAdmin()"
                  class="dropdown">
               <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
-                      data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                      aria-label="édition de la publication">
                 <font-awesome-icon :icon="['fas', 'ellipsis-h']" class="me-1"/>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

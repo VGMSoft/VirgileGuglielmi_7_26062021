@@ -13,14 +13,14 @@
                     <img src="@/assets/profile/avatar.png"
                          class="rounded-circle profile-pic border border-primary border-1"
                          alt="avatar"/>
-                    <h5 class="card-title text-red mx-2 mb-0">{{ comment.user.pseudo }}</h5>
+                    <h2 class="card-title text-red mx-2 mb-0">{{ comment.user.pseudo }}</h2>
                   </div>
                 </div>
                 <div class="ps-2">
-                  <p class="card-text">{{ comment.content }}</p>
+                  <p class="card-text text-dark">{{ comment.content }}</p>
                 </div>
               </div>
-              <div class="card-footer d-flex justify-content-between py-0">{{ comment.date }}</div>
+              <div class="card-footer d-flex justify-content-between py-0 text-dark">{{ comment.date }}</div>
             </div>
 
           </li>
@@ -45,13 +45,11 @@ export default defineComponent({
   name: "AllPostCompo",
   components: {NewCommentCompo},
   setup() {
-    const router = useRouter()
 
     // edit mode initial state
     let edit = ref(false)
     // edit mode toggle
     const toggleEdit = () => {
-      console.log(edit.value)
       if (edit.value === false) {
         edit.value = true
       } else if (edit.value === true) {

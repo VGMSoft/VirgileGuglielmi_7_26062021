@@ -6,11 +6,11 @@
           <img src="@/assets/profile/avatar.png"
                class="rounded-circle profile-pic border border-primary border-1"
                alt="avatar"/>
-          <h5 class="card-title text-red mx-2 mb-0">{{ pseudo }}</h5>
+          <h2 class="card-title text-red mx-2 mb-0">{{ pseudo }}</h2>
         </div>
       </div>
       <div class="ps-2">
-        <p class="card-text">{{ content }}</p>
+        <p class="card-text text-dark">{{ content }}</p>
       </div>
     </div>
     <div class="card-footer d-flex justify-content-between py-0">{{ date }}</div>

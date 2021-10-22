@@ -58,7 +58,5 @@ app.use('/api/posts', postRoute)
 app.use("/api/posts/:postId/like", likeRoute)
 
 //Serving images--------------------------------------------------------------------------------------------------------
-app.use('/images/posts', express.static(path.join(__dirname, 'images/posts')))
-app.use("/images/avatars", express.static(path.join(__dirname, "images/avatars")))
-
+app.use(express.static('images'));
 module.exports = app

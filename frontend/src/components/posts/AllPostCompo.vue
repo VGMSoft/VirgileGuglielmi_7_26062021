@@ -12,7 +12,7 @@
                   <img src="@/assets/profile/avatar.png"
                        class="rounded-circle profile-pic border border-primary border-1"
                        alt="avatar"/>
-                  <h5 class="card-title text-red mx-2 mb-0">{{ post.user.pseudo }}</h5>
+                  <h2 class="card-title text-red mx-2 mb-0">{{ post.user.pseudo }}</h2>
                 </div>
               </div>
               <div class="card-body text-secondary border-bottom-0">

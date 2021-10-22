@@ -26,22 +26,22 @@
     <div class="mb-2">
       <label for="Email" class="form-label fw-light mb-0">Email :</label>
       <input type="email" autocomplete="email" class="form-control"
-             :class="{ 'is-valid': !userVal.email.errorMessage && userVal.email.value, 'is-invalid': userVal.email.errorMessage }" id="Email" aria-describedby="emailHelp"
+             :class="{ 'is-valid': !userVal.email.errorMessage && userVal.email.value, 'is-invalid': userVal.email.errorMessage }" id="Email"
              v-model.trim="userVal.email.value">
       <div class="error text-primary form-text">{{ userVal.email.errorMessage }}</div>
     </div>
 
     <div class="mb-2">
       <label for="Password" class="form-label fw-light mb-0">Mot de passe :</label>
-      <input type="password" name="password" autocomplete="current-password" class="form-control"
+      <input type="password" name="password" autocomplete="current-password" class="form-control" aria-describedby="passwordHelp"
              :class="{ 'is-valid': !userVal.password.errorMessage && userVal.password.value, 'is-invalid': userVal.password.errorMessage }" id="Password"
              v-model.trim="userVal.password.value">
-      <div id="emailHelp" class="form-text fw-lighter">Le mot de passe doit contenir:
+      <div id="passwordHelp" class="form-text fw-lighter text-dark">Le mot de passe doit contenir:
         <ul>
-          <li class="form-text fw-lighter">Au moins 8 caractères</li>
-          <li class="form-text fw-lighter">Au moins 1 lettre majuscule</li>
-          <li class="form-text fw-lighter">Au moins 1 lettre minuscule</li>
-          <li class="form-text fw-lighter">Au moins 1 chiffre</li>
+          <li class="form-text fw-lighter text-dark">Au moins 8 caractères</li>
+          <li class="form-text fw-lighter text-dark">Au moins 1 lettre majuscule</li>
+          <li class="form-text fw-lighter text-dark">Au moins 1 lettre minuscule</li>
+          <li class="form-text fw-lighter text-dark">Au moins 1 chiffre</li>
         </ul>
       </div>
 

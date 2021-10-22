@@ -9,14 +9,14 @@
               <img src="@/assets/profile/avatar.png"
                    class="img-fluid rounded-start"
                    alt="Profile picture"/>
-<!--              <img :src=profile.avatar_url-->
-<!--                   class="img-fluid rounded-start"-->
-<!--                   alt="Profile picture"/>-->
+              <!--              <img :src=profile.avatar_url-->
+              <!--                   class="img-fluid rounded-start"-->
+              <!--                   alt="Profile picture"/>-->
             </div>
             <div class="col-md-8">
               <div class="card-body">
                 <div class="d-flex justify-content-between">
-                  <h5 class="card-title text-red fw-bold">{{ profile.pseudo }}</h5>
+                  <h2 class="card-title text-red fw-bold">{{ profile.pseudo }}</h2>
 
                   <!--Dropdown-->
                   <div class="dropdown mb-2">
@@ -25,7 +25,8 @@
                             id="dropdownMenuButton"
                             data-bs-toggle="dropdown"
                             aria-haspopup="true"
-                            aria-expanded="false">
+                            aria-expanded="false"
+                            aria-label="édition du profile">
                       <font-awesome-icon :icon="['fas', 'cog']" class="me-1"/>
                     </button>
 
@@ -106,11 +107,11 @@
                 </p>
 
                 <!--File upload-->
-                <div class="d-flex flex-row mb-3">
+                <div v-if="editState" class="d-flex flex-row mb-3">
                   <input class="form-control" type="file" @change="onFileSelected"
-                         ref="fileInput"/>
+                         ref="fileInput" disabled/>
                   <!--                  <button class="btn btn-outline-info mx-2" @click="$refs.fileInput.click()">Pick file</button>-->
-                  <button class="btn btn-info mx-2" @click="onUpload">Upload</button>
+<!--                  <button class="btn btn-info mx-2" @click="onUpload">Upload</button>-->
                 </div>
 
                 <!--Edit buttons-->
@@ -176,11 +177,12 @@ export default defineComponent({
     //Models
     let user = ref<UserModel | undefined>();
     let profile = ref<UserModel | undefined>();
-
+    console.log("profileMod:",profile)
     //Profile
     const getProfile = async () => {
       try {
         const getReq = await http.get<UserModel>(`/api/profile/${userId}`);
+        console.log("profile:",profile)
         profile.value = getReq.data
         return getReq.data
       } catch (err) {
@@ -189,8 +191,12 @@ export default defineComponent({
     }
 
     const editProfile = async () => {
+      const formData = new FormData();
+      formData.append('file', file)
       try {
         const editReq = await http.put<UserModel>(`/api/profile/${userId}`, profile.value)
+        console.log("profileEdit:",profile)
+        // await http.put<UserModel>(`/api/profile/${userId}`, formData)
         editState.value = false
         await getProfile()
         return editReq.data
@@ -213,27 +219,26 @@ export default defineComponent({
     }
 
     //Avatar
-    let selectedFile = undefined
-
+    let file
     const onFileSelected = (event) => {
-      console.log("1) event", event)
-      selectedFile = event.target.files[0]
-      console.log("2) selectedFile", selectedFile, selectedFile.name)
+      file = event.target.files[0]
     }
-
     const onUpload = async () => {
-      const fd = new FormData();
-      fd.append('image', selectedFile, selectedFile.name)
-      console.log("3) formData", fd)
-      const res = await http.put(`/api/profile/2`, fd, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        },
-        onUploadProgress: progressEvent => {
-          console.log("upload progress : " + Math.round(progressEvent.loaded / progressEvent.total * 100) + "%")
-        }
-      })
-      console.log("4) res", res)
+      const formData = new FormData();
+      formData.append('file', file)
+      try {
+        await http.put(`/api/profile/${userId}`, formData)
+      } catch (error) {
+        console.log(error)
+      }
+        // {
+          // headers: {
+          //   'Content-Type': 'multipart/form-data'
+          // }
+          // onUploadProgress: progressEvent => {
+          //   console.log("upload progress : " + Math.round(progressEvent.loaded / progressEvent.total * 100) + "%")
+          // }
+        // }
     }
 
     return {

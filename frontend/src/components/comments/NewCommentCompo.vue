@@ -3,7 +3,7 @@
     <div class="card bg-light">
       <div class="card-body">
         <form @submit.prevent="createComment()" >
-          <label for="commentContent" class="p-2 text-uppercase">nouveau comment</label>
+          <label for="commentContent" class="p-2 text-uppercase text-dark">nouveau comment</label>
           <div class="d-flex flex-row">
           <textarea class="form-control" id="commentContent" rows="1" col="50" placeholder="New Comment"
                     v-model="commentData.content"></textarea>
