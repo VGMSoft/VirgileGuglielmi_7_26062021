@@ -27,21 +27,33 @@ export const editProfile = async (req, res: Response, next) => {
   // if (email) {
   //   res.status(405).json({message: 'This email is already used !'})
   // } else {
-    const reqBody = req.file
-      ? {
-        ...req.body,
-        email: encrypt(req.body.email, key, iv),
-        avatar_url: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-      }
-      : {email: encrypt(req.body.email, key, iv),
-      ...req.body}
 
-    try {
-      await User.update({...reqBody, id: userId}, {where: {id: userId}})
-      res.status(201).json({message: 'User updated successfully!'})
-    } catch (error) {
-      res.status(404).json({error})
-    }
+  //---
+
+  // const reqBody = req.file
+  //   ? {
+  //     email: encrypt(req.body.email, key, iv),
+  //     avatar_url: `${req.protocol}://${req.get('host')}/images/profile/${req.file.filename}`,
+  //     ...req.body
+  //   }
+  //   : {
+  //     email: encrypt(req.body.email, key, iv),
+  //     ...req.body
+  //   }
+
+  const reqBody = {
+    ...req.body,
+    email: encrypt(req.body.email, key, iv)
+  }
+
+  console.log(encrypt(req.body.email, key, iv))
+
+  try {
+    await User.update({...reqBody}, {where: {id: userId}})
+    res.status(201).json({message: 'User updated successfully!'})
+  } catch (error) {
+    res.status(404).json({error})
+  }
   // }
 }
 
